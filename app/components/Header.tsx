@@ -37,7 +37,7 @@ export default function Header() {
                     <Link href="/">Home</Link>
                     <Link href="/about">About</Link>
                     <Link href="/#universities">Blog</Link>
-                    <Link href="/#process">Initiatives</Link>
+                    <Link href="/#initiatives">Initiatives</Link>
                     <Link href="/donate">Donate</Link>
                 </nav>
 

@@ -1,0 +1,73 @@
+.main {
+    background: var(--paper);
+    color: var(--ink);
+}
+
+.hero {
+    align-items: center;
+    color: white;
+    display: flex;
+    height: min(850px, calc(100svh - 80px));
+    isolation: isolate;
+    justify-content: center;
+    min-height: 650px;
+    overflow: clip;
+    position: relative;
+    gap: 32px;
+}
+
+.about {
+    display: grid;
+    gap: clamp(56px, 7vw, 112px);
+    grid-template-columns: minmax(320px, 0.82fr) minmax(420px, 1.18fr);
+    margin: 0 auto;
+    max-width: var(--max-width);
+    min-height: calc(100svh - 80px);
+    padding: clamp(72px, 8vw, 128px) clamp(24px, 6.25vw, 100px);
+}
+
+.heading {
+    font-family: var(--font-serif), Times, serif;
+    font-size: clamp(4.5rem, 8vw, 8rem);
+    font-weight: 500;
+    letter-spacing: -0.065em;
+    line-height: 0.82;
+    margin: clamp(34px, 5vw, 72px) 0 0;
+    color: var(--ink);
+}
+
+.lead {
+    font-family: var(--font-serif), Times, serif;
+    font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+    line-height: 1.45;
+    margin: 30px 0 0;
+    max-width: 390px;
+    color: var(--ink);
+}
+
+.visual {
+    align-self: start;
+    margin: 0;
+    min-width: 0;
+    position: sticky;
+    top: 100px;
+}
+
+.imageFrame {
+    aspect-ratio: 4 / 5;
+    background: var(--paper-deep);
+    overflow: hidden;
+    position: relative;
+}
+
+
+.hero__image {
+    filter: grayscale(1) contrast(1.04);
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition:
+            filter 350ms ease,
+            transform 700ms ease;
+    width: 100%;
+}
