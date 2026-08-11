@@ -1,0 +1,19 @@
+# dependencies
+/node_modules
+
+# Next.js output
+/.next
+/out
+
+# local environment files
+.env*
+!.env.example
+
+# debug and OS files
+npm-debug.log*
+.DS_Store
+
+# temporary visual-reference captures
+/home-*.png
+/site-reference*.png
+/wix-reference.png
