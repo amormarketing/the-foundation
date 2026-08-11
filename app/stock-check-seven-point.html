@@ -1,0 +1,799 @@
+<!--
+  Seven-Point Stock Check
+  A teaching worksheet based on the CAN SLIM growth-stock framework
+  developed by William J. O'Neil.
+
+  Self-contained: no build step, no dependencies, no data feed.
+  Drop it on a server, or embed it in an existing page with:
+      <iframe src="stock-check-seven-point.html" style="width:100%;height:2400px;border:0"></iframe>
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seven-Point Stock Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper:    #EDEFE8;
+    --surface:  #F7F8F3;
+    --ink:      #1B241E;
+    --ink-soft: #5C6659;
+    --rule:     #C7CFC2;
+    --met:      #2E6B4C;
+    --near:     #A0701C;
+    --miss:     #8F3629;
+
+    --display: "Zilla Slab", Georgia, serif;
+    --body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    --gutter: clamp(1rem, 4vw, 2.5rem);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: clamp(2rem, 6vw, 4.5rem) var(--gutter) 4rem;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 1.1rem;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.1rem, 6.5vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0 0 1rem;
+    max-width: 16ch;
+  }
+
+  .lede {
+    max-width: 54ch;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    margin: 0 0 2.5rem;
+  }
+
+  /* ---------- tracker ---------- */
+
+  .tracker {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.4rem 0;
+    margin-bottom: 3rem;
+  }
+
+  .tracker-row {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .pip {
+    flex: 1 1 0;
+    min-width: 2.6rem;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    place-items: center;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.1rem, 3.4vw, 1.7rem);
+    border: 1px solid var(--rule);
+    color: var(--rule);
+    background: transparent;
+    transition: background 220ms ease, color 220ms ease, border-color 220ms ease;
+  }
+  .pip[data-state="met"]  { background: var(--met);  border-color: var(--met);  color: var(--surface); }
+  .pip[data-state="near"] { background: var(--near); border-color: var(--near); color: var(--surface); }
+  .pip[data-state="miss"] { border-color: var(--miss); color: var(--miss); }
+
+  .tracker-caption {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 0.9rem;
+  }
+
+  /* ---------- ticker field ---------- */
+
+  .ticker-field { margin-bottom: 2.75rem; }
+
+  /* ---------- criterion blocks ---------- */
+
+  .crit {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0 1.75rem;
+    padding: 2.25rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .mark {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 3.5rem;
+    line-height: 1;
+    width: 5.5rem;
+    height: 5.5rem;
+    display: grid;
+    place-items: center;
+    border: 1.5px solid var(--rule);
+    color: var(--rule);
+    transition: background 220ms ease, color 220ms ease, border-color 220ms ease;
+  }
+  .mark[data-state="met"]  { background: var(--met);  border-color: var(--met);  color: var(--surface); }
+  .mark[data-state="near"] { background: var(--near); border-color: var(--near); color: var(--surface); }
+  .mark[data-state="miss"] { border-color: var(--miss); color: var(--miss); }
+
+  .crit h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: -0.35rem 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .look-for {
+    margin: 0 0 0.6rem;
+    max-width: 58ch;
+  }
+
+  .source {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.35rem;
+    max-width: 58ch;
+  }
+  .source b {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 0.35rem; }
+
+  label {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    max-width: 22ch;
+  }
+
+  input[type="number"], input[type="text"], select {
+    font-family: var(--mono);
+    font-size: 1rem;
+    padding: 0.55rem 0.7rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 0;
+    color: var(--ink);
+    width: 11rem;
+    max-width: 100%;
+  }
+  select { width: 15rem; }
+  input[type="text"] { width: 20rem; }
+
+  input:focus-visible, select:focus-visible, button:focus-visible, .check:focus-within {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+
+  .checks { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.1rem; }
+  .check { display: flex; gap: 0.6rem; align-items: flex-start; cursor: pointer; max-width: 52ch; }
+  .check input { margin-top: 0.28rem; accent-color: var(--met); }
+  .check span { font-size: 0.92rem; color: var(--ink); }
+
+  .readout {
+    font-size: 0.9rem;
+    border-left: 3px solid var(--rule);
+    padding-left: 0.9rem;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    min-height: 1.4rem;
+  }
+  .readout[data-state="met"]  { border-color: var(--met);  color: var(--met); }
+  .readout[data-state="near"] { border-color: var(--near); color: var(--near); }
+  .readout[data-state="miss"] { border-color: var(--miss); color: var(--miss); }
+
+  /* ---------- result ---------- */
+
+  .result {
+    margin-top: 3rem;
+    border: 1.5px solid var(--ink);
+    background: var(--surface);
+    padding: clamp(1.5rem, 5vw, 2.5rem);
+    position: relative;
+    transition: opacity 260ms ease;
+  }
+
+  .result-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 0.75rem;
+  }
+
+  .tally {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5.5vw, 2.75rem);
+    line-height: 1.1;
+    margin: 0 0 0.75rem;
+  }
+
+  .verdict { margin: 0 0 1.25rem; max-width: 56ch; }
+
+  .gate {
+    display: none;
+    border: 1.5px solid var(--miss);
+    color: var(--miss);
+    padding: 1rem 1.15rem;
+    margin-bottom: 1.35rem;
+  }
+  .gate p { margin: 0; max-width: 56ch; font-size: 0.94rem; }
+  .gate strong {
+    display: block;
+    font-family: var(--display);
+    font-size: 1.15rem;
+    margin-bottom: 0.3rem;
+  }
+  .result.gated .gate { display: block; }
+  .result.gated .tally, .result.gated .verdict { opacity: 0.4; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+  button {
+    font-family: var(--body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.6rem 1.1rem;
+    background: var(--ink);
+    color: var(--surface);
+    border: 1.5px solid var(--ink);
+    border-radius: 0;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+  }
+  button.ghost { background: transparent; color: var(--ink); }
+  button:hover { background: var(--met); border-color: var(--met); color: var(--surface); }
+
+  .disclaimer {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+  .disclaimer p { margin: 0 0 0.7rem; }
+
+  @media (max-width: 620px) {
+    .crit { grid-template-columns: 1fr; gap: 1rem; }
+    .mark { width: 3.75rem; height: 3.75rem; font-size: 2.25rem; }
+    input[type="number"], select, input[type="text"] { width: 100%; }
+    .field { width: 100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  @media print {
+    body { background: #fff; }
+    button { display: none; }
+  }
+</style>
+
+<div class="wrap">
+
+  <p class="eyebrow">Financial literacy program &middot; Worksheet 01</p>
+  <h1>The seven-point stock check</h1>
+  <p class="lede">
+    Seven questions investor William O'Neil used to separate stocks that were genuinely
+    growing from ones that only looked cheap. Go find the real numbers for a company you
+    are curious about, fill them in, and see where it holds up and where it does not.
+    The point is the hunt for the data, not the tally at the bottom.
+  </p>
+
+  <div class="tracker">
+    <div class="tracker-row" id="tracker" aria-hidden="true"></div>
+    <p class="tracker-caption" id="tracker-caption">Nothing entered yet</p>
+  </div>
+
+  <div class="ticker-field field">
+    <label for="ticker">Company or ticker you are checking</label>
+    <input type="text" id="ticker" placeholder="e.g. Costco, or COST">
+  </div>
+
+  <!-- C -->
+  <section class="crit" data-key="C">
+    <div class="mark" data-state="blank">C</div>
+    <div>
+      <h2>Current quarterly earnings</h2>
+      <p class="look-for">
+        Earnings per share up 25% or more against the same quarter one year earlier.
+        Rising sales alongside rising earnings is the confirmation, because a company can
+        lift earnings for a quarter by cutting costs, and that trick only works once.
+      </p>
+      <p class="source"><b>Where to look</b> &nbsp;The company's most recent quarterly earnings release, or its 10-Q filing on the SEC's EDGAR database.</p>
+      <div class="fields">
+        <div class="field">
+          <label for="c-eps">EPS growth vs same quarter last year (%)</label>
+          <input type="number" id="c-eps" step="any" placeholder="25">
+        </div>
+        <div class="field">
+          <label for="c-sales">Sales growth vs same quarter last year (%)</label>
+          <input type="number" id="c-sales" step="any" placeholder="25">
+        </div>
+      </div>
+      <p class="readout" id="r-C" aria-live="polite">Enter the two figures above.</p>
+    </div>
+  </section>
+
+  <!-- A -->
+  <section class="crit" data-key="A">
+    <div class="mark" data-state="blank">A</div>
+    <div>
+      <h2>Annual earnings growth</h2>
+      <p class="look-for">
+        One good quarter can be luck. O'Neil wanted annual earnings growing 25% or more a
+        year across three years, and a return on equity of 17% or better, which shows the
+        company turns shareholder money into profit efficiently rather than just getting bigger.
+      </p>
+      <p class="source"><b>Where to look</b> &nbsp;The annual report or 10-K. Return on equity is listed on most stock summary pages.</p>
+      <div class="fields">
+        <div class="field">
+          <label for="a-eps">Annual EPS growth, 3-year average (%)</label>
+          <input type="number" id="a-eps" step="any" placeholder="25">
+        </div>
+        <div class="field">
+          <label for="a-roe">Return on equity (%)</label>
+          <input type="number" id="a-roe" step="any" placeholder="17">
+        </div>
+      </div>
+      <p class="readout" id="r-A" aria-live="polite">Enter the two figures above.</p>
+    </div>
+  </section>
+
+  <!-- N -->
+  <section class="crit" data-key="N">
+    <div class="mark" data-state="blank">N</div>
+    <div>
+      <h2>Something new</h2>
+      <p class="look-for">
+        A new product, service, or leadership team gives the price somewhere to go. O'Neil
+        paired that with a rule most beginners find backwards: buy as a stock pushes into
+        new high ground, not when it is sitting near its lows looking like a bargain.
+      </p>
+      <p class="source"><b>Where to look</b> &nbsp;Company press releases and recent news for the catalyst. Any price chart for the 52-week high.</p>
+      <div class="checks">
+        <label class="check"><input type="checkbox" id="n-catalyst"><span>A meaningful new product, service, or management change in the past year</span></label>
+        <label class="check"><input type="checkbox" id="n-high"><span>Trading within about 5% of its 52-week high</span></label>
+        <label class="check"><input type="checkbox" id="n-base"><span>Emerging from a period of sideways price action rather than falling</span></label>
+      </div>
+      <p class="readout" id="r-N" aria-live="polite">Tick whichever apply.</p>
+    </div>
+  </section>
+
+  <!-- S -->
+  <section class="crit" data-key="S">
+    <div class="mark" data-state="blank">S</div>
+    <div>
+      <h2>Supply and demand</h2>
+      <p class="look-for">
+        Price moves when buying overwhelms available shares. Look for volume at least 40%
+        above its 50-day average on the days the stock jumps, which says large buyers are
+        involved rather than a handful of small trades.
+      </p>
+      <p class="source"><b>Where to look</b> &nbsp;The volume bars under any price chart. Shares outstanding appears on the company's stock summary page.</p>
+      <div class="fields">
+        <div class="field">
+          <label for="s-vol">Volume on the big up days vs 50-day average (%)</label>
+          <input type="number" id="s-vol" step="any" placeholder="40">
+        </div>
+        <div class="field">
+          <label for="s-float">Shares outstanding (millions)</label>
+          <input type="number" id="s-float" step="any" placeholder="120">
+        </div>
+      </div>
+      <p class="readout" id="r-S" aria-live="polite">Enter the volume figure. Shares outstanding adds context.</p>
+    </div>
+  </section>
+
+  <!-- L -->
+  <section class="crit" data-key="L">
+    <div class="mark" data-state="blank">L</div>
+    <div>
+      <h2>Leader, not laggard</h2>
+      <p class="look-for">
+        Investors tend to buy the cheaper, weaker company in a hot industry and call it
+        value. O'Neil found the opposite worked: own the strongest one or two names in a
+        strong group. A stock well ahead of the S&amp;P 500 over twelve months is the rough test.
+      </p>
+      <p class="source"><b>Where to look</b> &nbsp;A one-year performance chart with the S&amp;P 500 overlaid. Most charting sites let you add a comparison line.</p>
+      <div class="fields">
+        <div class="field">
+          <label for="l-stock">Stock's 12-month price change (%)</label>
+          <input type="number" id="l-stock" step="any" placeholder="45">
+        </div>
+        <div class="field">
+          <label for="l-index">S&amp;P 500's 12-month change (%)</label>
+          <input type="number" id="l-index" step="any" placeholder="12">
+        </div>
+      </div>
+      <div class="checks">
+        <label class="check"><input type="checkbox" id="l-group"><span>Among the top few performers in its industry group</span></label>
+      </div>
+      <p class="readout" id="r-L" aria-live="polite">Enter both percentages.</p>
+    </div>
+  </section>
+
+  <!-- I -->
+  <section class="crit" data-key="I">
+    <div class="mark" data-state="blank">I</div>
+    <div>
+      <h2>Institutional sponsorship</h2>
+      <p class="look-for">
+        Funds and pensions move enough money to carry a price for months. You want their
+        numbers rising quarter over quarter. Near-total institutional ownership works
+        against you though, since it can mean everyone who was going to buy already has.
+      </p>
+      <p class="source"><b>Where to look</b> &nbsp;The institutional ownership section of most stock summary pages, or 13F filings on EDGAR.</p>
+      <div class="fields">
+        <div class="field">
+          <label for="i-pct">Institutional ownership (%)</label>
+          <input type="number" id="i-pct" step="any" placeholder="65">
+        </div>
+        <div class="field">
+          <label for="i-trend">Number of funds owning it, last 3 quarters</label>
+          <select id="i-trend">
+            <option value="">Select</option>
+            <option value="up">Rising</option>
+            <option value="flat">About flat</option>
+            <option value="down">Falling</option>
+          </select>
+        </div>
+      </div>
+      <p class="readout" id="r-I" aria-live="polite">Enter the ownership figure and the trend.</p>
+    </div>
+  </section>
+
+  <!-- M -->
+  <section class="crit" data-key="M">
+    <div class="mark" data-state="blank">M</div>
+    <div>
+      <h2>Market direction</h2>
+      <p class="look-for">
+        The one that overrides the other six. O'Neil's research found roughly three of every
+        four stocks follow the general market, so a company that passes every test above will
+        still tend to fall when the whole market is falling.
+      </p>
+      <p class="source"><b>Where to look</b> &nbsp;The trend of the major indexes over recent weeks, and whether they are holding above or breaking below their 50-day moving averages.</p>
+      <div class="fields">
+        <div class="field">
+          <label for="m-state">Current market condition</label>
+          <select id="m-state">
+            <option value="">Select</option>
+            <option value="up">Indexes in a confirmed uptrend</option>
+            <option value="pressure">Uptrend under pressure</option>
+            <option value="down">Market in a correction</option>
+          </select>
+        </div>
+      </div>
+      <p class="readout" id="r-M" aria-live="polite">Select the current condition.</p>
+    </div>
+  </section>
+
+  <div class="result" id="result">
+    <p class="result-label">Where it stands</p>
+    <div class="gate" id="gate">
+      <p>
+        <strong>The market rule overrides the rest.</strong>
+        Whatever the six company criteria say above, O'Neil's own method calls for standing
+        aside while the general market is falling and waiting for the indexes to turn.
+        This is the point of the exercise that costs people the most when they skip it.
+      </p>
+    </div>
+    <p class="tally" id="tally">Nothing checked yet</p>
+    <p class="verdict" id="verdict">Fill in what you can find. Blank criteria are left out of the count rather than counted against the company.</p>
+    <div class="actions">
+      <button type="button" id="copy">Copy summary</button>
+      <button type="button" class="ghost" id="reset">Start over</button>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <p>
+      This worksheet is a classroom exercise for learning how to read company filings and
+      price data. It is not investment advice, not a recommendation to buy or sell anything,
+      and a high count here does not mean a stock will rise. Passing all seven points has
+      never guaranteed a profitable investment and never will.
+    </p>
+    <p>
+      The seven criteria are drawn from the CAN SLIM investing framework developed by
+      William J. O'Neil and published in <i>How to Make Money in Stocks</i>. CAN SLIM is a
+      registered trademark of Investor's Business Daily. This worksheet is an independent
+      educational tool and is not affiliated with or endorsed by them.
+    </p>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var ORDER = ["C", "A", "N", "S", "L", "I", "M"];
+  var NAMES = {
+    C: "Current quarterly earnings",
+    A: "Annual earnings growth",
+    N: "Something new",
+    S: "Supply and demand",
+    L: "Leader, not laggard",
+    I: "Institutional sponsorship",
+    M: "Market direction"
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var num = function (id) {
+    var v = $(id).value.trim();
+    if (v === "") return null;
+    var n = parseFloat(v);
+    return isNaN(n) ? null : n;
+  };
+  var checked = function (id) { return $(id).checked; };
+
+  // Each test returns { state, note }. state is met | near | miss | blank.
+  var TESTS = {
+
+    C: function () {
+      var eps = num("c-eps"), sales = num("c-sales");
+      if (eps === null && sales === null) return { state: "blank", note: "Enter the two figures above." };
+      if (eps === null) return { state: "blank", note: "Sales are in. Earnings growth is the figure that decides this one." };
+      if (eps >= 25 && sales !== null && sales >= 20)
+        return { state: "met", note: "Earnings up " + eps + "% with sales up " + sales + "%. Growth is coming from selling more, which is what you want to see." };
+      if (eps >= 25 && sales !== null)
+        return { state: "near", note: "Earnings clear the 25% bar but sales are only up " + sales + "%. Worth asking where the extra profit came from if it is not coming from revenue." };
+      if (eps >= 25)
+        return { state: "near", note: "Earnings clear the bar. Add the sales figure to see whether revenue is backing it up." };
+      if (eps >= 15)
+        return { state: "near", note: "Up " + eps + "%, short of the 25% O'Neil looked for. Check whether the rate is accelerating across the last few quarters." };
+      return { state: "miss", note: "Up " + eps + "%, well short of 25%. This is the criterion O'Neil treated as non-negotiable." };
+    },
+
+    A: function () {
+      var eps = num("a-eps"), roe = num("a-roe");
+      if (eps === null && roe === null) return { state: "blank", note: "Enter the two figures above." };
+      var epsOk = eps !== null && eps >= 25;
+      var roeOk = roe !== null && roe >= 17;
+      if (epsOk && roeOk)
+        return { state: "met", note: "Three-year growth of " + eps + "% a year with " + roe + "% return on equity. Consistent, and efficient with the capital it holds." };
+      if (epsOk && roe !== null)
+        return { state: "near", note: "Growth is there at " + eps + "% a year, but " + roe + "% return on equity is below 17%. It is growing without using shareholder money especially well." };
+      if (roeOk && eps !== null)
+        return { state: "near", note: "Return on equity of " + roe + "% is strong, but " + eps + "% annual growth falls short of 25% over three years." };
+      if (eps !== null && roe !== null)
+        return { state: "miss", note: "Neither the growth rate nor the return on equity reaches the threshold." };
+      return { state: "blank", note: "Add the second figure to finish this one." };
+    },
+
+    N: function () {
+      var cat = checked("n-catalyst"), high = checked("n-high"), base = checked("n-base");
+      var count = (cat ? 1 : 0) + (high ? 1 : 0) + (base ? 1 : 0);
+      if (count === 0) return { state: "blank", note: "Tick whichever apply." };
+      if (high && cat && base)
+        return { state: "met", note: "A catalyst, a price near its high, and a base to break out of. This is the setup O'Neil was describing." };
+      if (high && (cat || base))
+        return { state: "met", note: "Near its high with " + (cat ? "a real catalyst behind it" : "a period of consolidation behind it") + "." };
+      if (high)
+        return { state: "near", note: "Near its high, but nothing new identified to explain why. Ask what the buyers know." };
+      return { state: "miss", note: "Not near its high. O'Neil's finding was that stocks making new highs tend to keep going, and cheap ones tend to get cheaper." };
+    },
+
+    S: function () {
+      var vol = num("s-vol"), sh = num("s-float");
+      if (vol === null) return { state: "blank", note: "Enter the volume figure. Shares outstanding adds context." };
+      var ctx = "";
+      if (sh !== null) {
+        if (sh < 50) ctx = " With only " + sh + "M shares outstanding, it takes relatively little buying to move this price, in either direction.";
+        else if (sh > 500) ctx = " At " + sh + "M shares outstanding, it takes a great deal of money to move this price much.";
+        else ctx = " Shares outstanding of " + sh + "M is a middling supply.";
+      }
+      if (vol >= 40) return { state: "met", note: "Volume " + vol + "% above average on up days. Large buyers are involved." + ctx };
+      if (vol >= 15) return { state: "near", note: "Volume " + vol + "% above average. Some interest, short of the surge O'Neil wanted to see." + ctx };
+      return { state: "miss", note: "Volume only " + vol + "% above average. A price rise on ordinary volume is easily reversed." + ctx };
+    },
+
+    L: function () {
+      var s = num("l-stock"), i = num("l-index"), group = checked("l-group");
+      if (s === null || i === null) return { state: "blank", note: "Enter both percentages." };
+      var gap = Math.round((s - i) * 10) / 10;
+      if (gap >= 25 && group)
+        return { state: "met", note: "Ahead of the index by " + gap + " points and a leader in its group. This is the profile O'Neil bought." };
+      if (gap >= 25)
+        return { state: "met", note: "Ahead of the index by " + gap + " points. Now check how it ranks against its direct competitors." };
+      if (gap > 0)
+        return { state: "near", note: "Ahead by " + gap + " points, a narrower margin than the clear leaders usually show." };
+      return { state: "miss", note: "Behind the index by " + Math.abs(gap) + " points. This is the laggard side of the test." };
+    },
+
+    I: function () {
+      var pct = num("i-pct"), trend = $("i-trend").value;
+      if (pct === null || trend === "") return { state: "blank", note: "Enter the ownership figure and the trend." };
+      if (trend === "down")
+        return { state: "miss", note: "Funds are leaving. When institutions sell they sell in size, and it takes time." };
+      if (trend === "up" && pct >= 20 && pct <= 90)
+        return { state: "met", note: "Fund ownership rising at " + pct + "%. Real money is accumulating and there is still room for more." };
+      if (trend === "up" && pct > 90)
+        return { state: "near", note: "Still rising, but at " + pct + "% nearly everyone who might buy already owns it." };
+      if (trend === "up")
+        return { state: "near", note: "Rising, though " + pct + "% is thin sponsorship. Few professionals have taken a position yet." };
+      return { state: "near", note: "Ownership flat at " + pct + "%. Neither accumulation nor distribution." };
+    },
+
+    M: function () {
+      var m = $("m-state").value;
+      if (m === "") return { state: "blank", note: "Select the current condition." };
+      if (m === "up") return { state: "met", note: "Indexes trending up. The wind is behind the other six criteria." };
+      if (m === "pressure") return { state: "near", note: "Under pressure. O'Neil's guidance here was to buy less and demand more from each candidate." };
+      return { state: "miss", note: "Market in a correction. About three of four stocks fall with it, including good ones." };
+    }
+  };
+
+  function evaluate() {
+    var states = {}, met = 0, near = 0, filled = 0;
+
+    ORDER.forEach(function (k) {
+      var res = TESTS[k]();
+      states[k] = res.state;
+
+      var readout = $("r-" + k);
+      readout.textContent = res.note;
+      readout.setAttribute("data-state", res.state);
+
+      document.querySelector('.crit[data-key="' + k + '"] .mark')
+        .setAttribute("data-state", res.state);
+
+      var pip = document.querySelector('.pip[data-key="' + k + '"]');
+      if (pip) pip.setAttribute("data-state", res.state);
+
+      if (k === "M") return;
+      if (res.state !== "blank") filled++;
+      if (res.state === "met") met++;
+      if (res.state === "near") near++;
+    });
+
+    var score = met + near * 0.5;
+    var tally = $("tally"), verdict = $("verdict");
+    var result = $("result");
+
+    if (filled === 0) {
+      tally.textContent = "Nothing checked yet";
+      verdict.textContent = "Fill in what you can find. Blank criteria are left out of the count rather than counted against the company.";
+    } else {
+      var name = $("ticker").value.trim();
+      tally.textContent = (name ? name + " meets " : "Meets ") +
+        (Math.round(score * 10) / 10) + " of " + filled +
+        " company criteria checked";
+
+      var ratio = score / filled;
+      var line;
+      if (ratio >= 0.9) line = "Holds up on nearly every point you have checked so far. In O'Neil's method a stock like this earned closer study of its chart, never an automatic purchase.";
+      else if (ratio >= 0.65) line = "Strong on most points, with real gaps above. Read the amber and red notes rather than the number, since those are where the argument against the company lives.";
+      else if (ratio >= 0.4) line = "Mixed. Enough falls short that the framework would set this one aside and look at something else.";
+      else line = "Falls short on most of what you have checked. Useful to understand why, since these are the stocks that look most tempting on price alone.";
+
+      if (filled < 6) line += " " + (6 - filled) + " of the six company criteria are still blank.";
+      verdict.textContent = line;
+    }
+
+    if (states.M === "miss") result.classList.add("gated");
+    else result.classList.remove("gated");
+
+    var all = { met: 0, near: 0, miss: 0, blank: 0 };
+    ORDER.forEach(function (k) { all[states[k]]++; });
+
+    var capt = $("tracker-caption");
+    if (all.blank === 7) {
+      capt.textContent = "Nothing entered yet";
+    } else {
+      capt.textContent = all.met + " met \u00B7 " + all.near + " partial \u00B7 " +
+        all.miss + " short \u00B7 " + all.blank + " still blank";
+    }
+  }
+
+  // build tracker pips
+  var tracker = $("tracker");
+  ORDER.forEach(function (k) {
+    var d = document.createElement("div");
+    d.className = "pip";
+    d.setAttribute("data-key", k);
+    d.setAttribute("data-state", "blank");
+    d.textContent = k;
+    tracker.appendChild(d);
+  });
+
+  document.addEventListener("input", evaluate);
+  document.addEventListener("change", evaluate);
+
+  $("reset").addEventListener("click", function () {
+    document.querySelectorAll("input").forEach(function (el) {
+      if (el.type === "checkbox") el.checked = false; else el.value = "";
+    });
+    document.querySelectorAll("select").forEach(function (el) { el.value = ""; });
+    evaluate();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  $("copy").addEventListener("click", function () {
+    var name = $("ticker").value.trim() || "Unnamed company";
+    var lines = ["Seven-point stock check \u2014 " + name, ""];
+    ORDER.forEach(function (k) {
+      var st = document.querySelector('.crit[data-key="' + k + '"] .mark').getAttribute("data-state");
+      var mark = st === "met" ? "[met]" : st === "near" ? "[partial]" : st === "miss" ? "[short]" : "[blank]";
+      lines.push(k + " \u2014 " + NAMES[k] + " " + mark);
+      lines.push("    " + $("r-" + k).textContent);
+    });
+    lines.push("", $("tally").textContent, $("verdict").textContent);
+    lines.push("", "Classroom exercise. Not investment advice.");
+
+    var text = lines.join("\n");
+    var btn = this;
+    var done = function () { btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy summary"; }, 1800); };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text, done); });
+    } else {
+      fallback(text, done);
+    }
+  });
+
+  function fallback(text, done) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); done(); } catch (e) { /* nothing to do */ }
+    document.body.removeChild(ta);
+  }
+
+  evaluate();
+})();
+</script>
