@@ -214,7 +214,7 @@ export default function Home() {
               className="contact__email"
               href="mailto:info@thefoundationus.org"
             >
-              info@thefoundationus.com
+              info@thefoundationus.org
             </a>
           </div>
 
