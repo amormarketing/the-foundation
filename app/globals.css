@@ -851,8 +851,25 @@ h3 {
 
   .hero {
     height: calc(100svh - 82px);
+    overflow: hidden;
   }
 
+  .hero__media {
+    height: 100%;
+    margin-top: 0;
+    overflow: hidden;
+  }
+
+  .hero__image-sticky {
+    height: 100%;
+    position: relative;
+    top: auto;
+  }
+
+  .hero__image {
+    transform: none;
+
+  }
 
   .mission,
   .contact,
