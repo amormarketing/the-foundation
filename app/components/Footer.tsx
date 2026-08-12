@@ -13,12 +13,12 @@ export default function Footer() {
             </div>
             <div className="footer-column">
                 <span>Contact</span>
-                <a href="tel:+11234567890">
-                    123-456-7890
+                <a href="tel:+13143479799">
+                    +1 (314) 347-9799
                 </a>
 
-                <a href="mailto:info@thefoundationus.com">
-                    info@thefoundationus.com
+                <a href="mailto:info@thefoundationus.org">
+                    info@thefoundationus.org
                 </a>
                 <p>
                     500 Terry Francine St.
