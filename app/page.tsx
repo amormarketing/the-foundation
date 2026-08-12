@@ -1,6 +1,4 @@
-import Image from "next/image";
-import heroImage from "@/public/hero-library.webp";
-import Link from "next/link";
+import ParallaxHeroImage from "@/app/components/ParallaxHeroImage";
 // import Header from "@/components/Header";
 // import Footer from "@/app/components/Footer";
 
@@ -47,29 +45,29 @@ const universityVoices = [
   },
 ];
 
-function FlameMark({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      viewBox="0 0 48 72"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M27.5 2C29 16.5 14 19.4 14 34c0 7.2 4.4 12.2 10.1 14.4-1.6-7.3 3.9-11.8 8.5-16.9C36.7 27 39 21.8 36.4 15.7 45 24.8 45.7 36.4 40.2 45.1 36.4 51 30.7 53.7 25 54.4V70h-4V54.3C10.1 53 3 45.3 3 35.5 3 20.7 17.9 15.3 27.5 2Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
+// function FlameMark({ className = "" }: { className?: string }) {
+//   return (
+//     <svg
+//       aria-hidden="true"
+//       className={className}
+//       viewBox="0 0 48 72"
+//       fill="none"
+//       xmlns="http://www.w3.org/2000/svg"
+//     >
+//       <path
+//         d="M27.5 2C29 16.5 14 19.4 14 34c0 7.2 4.4 12.2 10.1 14.4-1.6-7.3 3.9-11.8 8.5-16.9C36.7 27 39 21.8 36.4 15.7 45 24.8 45.7 36.4 40.2 45.1 36.4 51 30.7 53.7 25 54.4V70h-4V54.3C10.1 53 3 45.3 3 35.5 3 20.7 17.9 15.3 27.5 2Z"
+//         fill="currentColor"
+//       />
+//     </svg>
+//   );
+// }
 
 function Brand({ hero = false }: { hero?: boolean }) {
   return (
     <div className={hero ? "brand brand--hero" : "brand"}>
       <img
           className="brand__logo"
-          src = 'assets/thefoundlogowh.svg'
+          src = '/assets/thefoundlogowh.svg'
           alt='logo'
       />
 
@@ -93,19 +91,7 @@ export default function Home() {
     <>
       <main>
         <section className="hero" id="home" aria-labelledby="hero-title">
-          <div className="hero__media">
-            <div className="hero__image-sticky">
-              <Image
-                alt="Historic brick arches framing a quiet library"
-                className="hero__image"
-                fill
-                placeholder="blur"
-                priority
-                sizes="100vw"
-                src={heroImage}
-              />
-            </div>
-          </div>
+          <ParallaxHeroImage />
           <div className="hero__veil" />
           <div className="hero__content">
             <h1 className="sr-only" id="hero-title">
@@ -226,7 +212,7 @@ export default function Home() {
             </p>
             <a
               className="contact__email"
-              href="mailto:info@thefoundationus.com"
+              href="mailto:info@thefoundationus.org"
             >
               info@thefoundationus.com
             </a>
@@ -234,7 +220,7 @@ export default function Home() {
 
           <form
             className="contact-form"
-            action="mailto:info@thefoundationus.com"
+            action="mailto:info@thefoundationus.org"
             encType="text/plain"
             method="post"
           >

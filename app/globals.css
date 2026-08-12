@@ -206,7 +206,7 @@ summary {
   isolation: isolate;
   justify-content: center;
   min-height: 650px;
-  overflow: clip;
+  overflow: hidden;
   position: relative;
 }
 
@@ -225,29 +225,24 @@ summary {
 
 
 .hero__media {
-  height: calc(100% + 200lvh);
   inset: 0;
-  isolation: isolate;
-  margin-top: -100lvh;
-  overflow: clip;
+  overflow: hidden;
   pointer-events: none;
   position: absolute;
-  width: 100%;
   z-index: 0;
 }
 
-.hero__image-sticky {
-  display: block;
-  height: max(100lvh, calc(100% - 200lvh));
-  position: sticky;
-  top: 0;
-  width: 100%;
+.hero__image-motion {
+  --hero-parallax-y: 0px;
+  inset: -10% 0;
+  position: absolute;
+  transform: translateY(var(--hero-parallax-y));
+  will-change: transform;
 }
 
 .hero__image {
   object-fit: cover;
   object-position: center;
-  transform: scaleY(1.01);
 }
 
 .hero__veil {
@@ -275,7 +270,7 @@ summary {
   display: flex;
   flex-direction: column;
   position: relative;
-  transform: translateY(80px);
+  /*transform: translateY(25vh);*/
   z-index: 2;
 }
 
@@ -851,24 +846,6 @@ h3 {
 
   .hero {
     height: calc(100svh - 82px);
-    overflow: hidden;
-  }
-
-  .hero__media {
-    height: 100%;
-    margin-top: 0;
-    overflow: hidden;
-  }
-
-  .hero__image-sticky {
-    height: 100%;
-    position: relative;
-    top: auto;
-  }
-
-  .hero__image {
-    transform: none;
-
   }
 
   .mission,
@@ -1001,16 +978,9 @@ h3 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__media {
-    height: 100%;
-    margin-top: 0;
-  }
-
-  .hero__image-sticky {
-    height: 100%;
-    margin-bottom: 0;
-    position: relative;
-    top: auto;
+  .hero__image-motion {
+    transform: none;
+    will-change: auto;
   }
 
   *,
