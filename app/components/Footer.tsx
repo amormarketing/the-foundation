@@ -21,9 +21,9 @@ export default function Footer() {
                     info@thefoundationus.org
                 </a>
                 <p>
-                    500 Terry Francine St.
+                    The Foundation US is a registered 501(c)(3) nonprofit.
                     <br />
-                    Los Angeles, CA 91367
+                    EIN No. 1234567
                 </p>
             </div>
             <div className="footer-column">
