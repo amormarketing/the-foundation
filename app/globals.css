@@ -758,6 +758,7 @@ h3 {
   flex-direction: column;
   font-family: var(--font-serif), Times, serif;
   gap: 10px;
+  text-wrap: wrap;
 }
 
 .footer-column span {
