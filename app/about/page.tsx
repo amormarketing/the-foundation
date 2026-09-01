@@ -4,10 +4,6 @@ import Image from "next/image";
 import aboutHero from "@/public/Ross-portrait.avif";
 
 
-
-
-
-
 export default function AboutPage() {
     return (
         <main className={styles.main}>

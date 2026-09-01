@@ -41,8 +41,8 @@ export default function Header() {
                     <Link href="/donate">Donate</Link>
                 </nav>
 
-                <Link className="header-cta" href="/#contact">
-                    Join us <ArrowIcon />
+                <Link className="header-cta" href="/apply">
+                    Apply <ArrowIcon />
                 </Link>
 
                 <details className="mobile-menu">

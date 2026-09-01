@@ -21,7 +21,11 @@ export default function Footer() {
                     info@thefoundationus.org
                 </a>
                 <p>
-                    The Foundation US is a registered 501(c)(3) nonprofit.
+                    The Foundation US is a registered{" "}
+                    <a href="/assets/IRS 501c3 - The Foundation US.pdf" target="_blank" rel="noopener noreferrer">
+                        501(c)(3) nonprofit.
+                    </a>
+                    <br />
                     <br />
                     EIN No. 1234567
                 </p>

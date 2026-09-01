@@ -72,7 +72,7 @@ function Brand({ hero = false }: { hero?: boolean }) {
       />
 
       {hero ? (
-        <span className="brand__motto">Wisdom · Strength · Truth</span>
+        <span className="brand__motto">Educating our future.</span>
       ) : null}
     </div>
   );

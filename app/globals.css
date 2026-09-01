@@ -42,6 +42,29 @@ a {
   text-decoration: none;
 }
 
+/*a[href] {*/
+/*  position: relative;*/
+
+/*  &::after {*/
+/*    background: currentColor;*/
+/*    bottom: -6px;*/
+/*    content: "";*/
+/*    height: 1px;*/
+/*    left: 0;*/
+/*    position: absolute;*/
+/*    transform: scaleX(0);*/
+/*    transform-origin: right;*/
+/*    transition: transform 220ms ease;*/
+/*    width: 100%;*/
+/*  }*/
+
+/*  &:hover::after,*/
+/*  &:focus-visible::after {*/
+/*    transform: scaleX(1);*/
+/*    transform-origin: left;*/
+/*  }*/
+/*}*/
+
 button,
 input,
 textarea {
@@ -761,6 +784,10 @@ h3 {
   text-wrap: wrap;
 }
 
+.footer-column a {
+  display: inline-block;
+}
+
 .footer-column span {
   font-family: var(--font-sans), sans-serif;
   margin-bottom: 12px;
@@ -778,6 +805,19 @@ h3 {
 .footer-column--last p {
   margin-top: auto;
 }
+
+/*@media (hover: none) and (pointer: coarse) {*/
+/*  a[href] {*/
+/*    display: inline;*/
+/*    text-decoration: underline;*/
+/*    text-decoration-thickness: 1px;*/
+/*    text-underline-offset: 4px;*/
+/*  }*/
+
+/*  a[href]::after {*/
+/*    content: none;*/
+/*  }*/
+/*}*/
 
 @media (max-width: 960px) {
   .site-header {

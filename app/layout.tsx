@@ -12,7 +12,7 @@ const sans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "The Foundation | Wisdom · Strength · Truth",
+  title: "The Foundation | Educating our future.",
   description:
     "Supporting the education of the next generation through knowledge, advocacy, leadership, and action.",
 };
