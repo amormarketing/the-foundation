@@ -107,7 +107,7 @@ export default function Home() {
             href="#about"
             aria-label="Scroll to our mission"
           >
-            <span>Discover</span>
+            <span>Learn</span>
             <span className="hero__scroll-line" />
           </a>
         </section>
