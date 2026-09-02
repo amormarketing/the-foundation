@@ -9,17 +9,21 @@ type ApplicationDraft = {
     firstName: string;
     lastName: string;
     email: string;
-    phone: number
+    phone: string;
     address: string;
     dob: string;
     whyApply: string;
-    }
+};
 
 const emptyDraft: ApplicationDraft = {
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
+    phone: "",
+    address: "",
+    dob: "",
     whyApply: "",
-}
+};
 
 export default function ApplicationWizard() {
     const [step, setStep] = useState<Step>("intro");
@@ -31,8 +35,8 @@ export default function ApplicationWizard() {
     }
 
     function next() {
-        if (step === "contact" && (!draft.name || !draft.email)) {
-            setError("Please enter your name and email.");
+        if (step === "contact" && (!draft.firstName.trim() || !draft.lastName.trim() || !draft.email.trim())) {
+            setError("Please enter your first name, last name, and email.");
             return;
         }
 
@@ -101,7 +105,7 @@ export default function ApplicationWizard() {
                     <label className={styles.apply_label}>
                         Phone number
                         <input className={styles.apply_input}
-                            type="phone"
+                            type="tel"
                             value={draft.phone}
                             onChange={(event) => updateField("phone", event.target.value)}
                         />
@@ -137,9 +141,9 @@ export default function ApplicationWizard() {
             {step === "review" && (
                 <>
                     <h1 className={styles.heading}>Review your application</h1>
-                    <p className={styles.lead}>Name: {draft.name}</p>
+                    <p className={styles.lead}>Name: {draft.firstName} {draft.lastName}</p>
                     <p className={styles.lead}>Email: {draft.email}</p>
-                    <p className={styles.lead}>Why you're applying: {draft.whyApply}</p>
+                    <p className={styles.lead}>Why you&apos;re applying: {draft.whyApply}</p>
                 </>
             )}
 
