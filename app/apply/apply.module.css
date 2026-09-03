@@ -1,119 +1,459 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 68px;
+  background: var(--ink);
+  color: var(--paper);
+  min-height: calc(100svh - 80px);
+  padding: clamp(40px, 7vw, 96px) clamp(20px, 5vw, 80px) clamp(64px, 9vw, 120px);
 }
 
-.span {
-    gap:16px;
-}
-
-.apply {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin: 0;
-}
-
-.hero {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    /*height: min(300px, calc(100svh - 80px));*/
-    isolation: isolate;
-    justify-content: center;
-    /*min-height: 300px;*/
-    overflow: clip;
-    position: relative;
-    gap: 16px;
-    /*padding: 68px 68px 68px;*/
+.wizard {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin: 0 auto;
+  max-width: min(100%, 720px);
 }
 
 .heading {
-    font-family: var(--font-serif), Times, serif;
-    font-size: clamp(2.5rem, 4vw, 6rem);
-    font-weight: 500;
-    letter-spacing: -0.065em;
-    /*line-height: 0.82;*/
-    color: var(--paper);
-    align-self: flex-start;
-    text-align: left;
-    margin: 0;
+  align-self: flex-start;
+  color: var(--paper);
+  font-family: var(--font-serif), Times, serif;
+  font-size: clamp(2.65rem, 7vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+  margin: 0;
+  outline: none;
 }
 
-.lead{
-    color: var(--paper);
-    margin: 0 0 0;
+.heading:focus-visible {
+  outline: none;
 }
 
-.button_apply{
-    align-items: center;
-    background: transparent;
-    color: var(--paper);
-    border: 1px solid var(--paper);
-    border-radius: 999px;
-    display: inline-flex;
-    font-size: 0.72rem;
-    font-weight: 600;
-    gap: 3px;
-    justify-content: center;
-    letter-spacing: 0.11em;
-    min-height: 48px;
-    padding: 0 23px;
-    text-transform: uppercase;
-    max-width: max-content;
-    transition:
-            background-color 220ms ease,
-            color 220ms ease,
-            border-color 220ms ease;
+.progress,
+.requiredNote,
+.copy,
+.awardLine,
+.smallCopy,
+.helper,
+.fieldError,
+.submitError,
+.counter,
+.counterWarning {
+  font-family: var(--font-sans), Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 65ch;
 }
 
-.button_apply:hover {
-    background: var(--paper);
-    color: var(--accent);
-
+.progress {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
 }
 
-.apply_form{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 68px;
+.progressGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.apply_label{
-    display: flex;
-    flex-direction: column;
-    width: 38vw;
-    min-width: 281px;
-    gap: 4px;
-    font-family: var(--font-serif), Times, serif;
+.progressBar {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  height: 2px;
+  width: 100%;
 }
 
-.apply_input{
-    background: transparent;
-    border: var(--paper) solid 1px;
-    padding: 6px;
-    font-family: var(--font-sans);
-    color: var(--paper);
+.progressBar::-webkit-progress-bar {
+  background: var(--light-line);
 }
 
-.apply_date{
-    color: var(--paper);
+.progressBar::-webkit-progress-value {
+  background: var(--paper);
 }
 
-.nav {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
+.progressBar::-moz-progress-bar {
+  background: var(--paper);
+}
 
+.requiredNote,
+.smallCopy,
+.helper,
+.counter {
+  color: rgba(244, 241, 239, 0.72);
+  font-size: 0.86rem;
+}
+
+.awardLine {
+  font-size: 1.06rem;
+  font-weight: 600;
+}
+
+.copy {
+  font-size: 1rem;
+}
+
+.requiredMark {
+  color: var(--paper);
+  display: inline-block;
+  font-size: 1em;
+}
+
+.labelText {
+  align-items: baseline;
+  display: flex;
+  gap: 4px;
+}
+
+.stepContent,
+.roleEntry,
+.reviewGroup,
+.fieldset,
+.applyLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.stepContent {
+  gap: 32px;
+}
+
+.fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.fieldset legend,
+.applyLabel,
+.dateLabel {
+  color: var(--paper);
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.dateLabel {
+  margin: 0 0 7px;
+}
+
+.applyInput,
+.textarea {
+  appearance: none;
+  background-color: rgba(244, 241, 239, 0.025);
+  border: 1px solid var(--light-line);
+  border-radius: 0;
+  color: var(--paper);
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.35;
+  min-height: 50px;
+  padding: 12px 14px;
+  width: 100%;
+}
+
+select.applyInput {
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--paper) 50%),
+    linear-gradient(135deg, var(--paper) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 13px) 50%;
+  background-repeat: no-repeat;
+  background-size: 5px 5px, 5px 5px;
+  padding-right: 38px;
 }
 
 .textarea {
-    background: transparent;
-    border: var(--paper) solid 1px;
+  min-height: 148px;
+  resize: vertical;
+}
+
+.applyInput::placeholder,
+.textarea::placeholder {
+  color: rgba(244, 241, 239, 0.58);
+}
+
+.applyInput:focus-visible,
+.textarea:focus-visible,
+.choiceLabel input:focus-visible,
+.buttonApply:focus-visible,
+.quietLink:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 3px;
+}
+
+.applyInput:hover,
+.textarea:hover {
+  border-color: rgba(244, 241, 239, 0.55);
+}
+
+.applyLabel:has(.fieldError) .applyInput,
+.applyLabel:has(.fieldError) .textarea,
+.fieldset:has(.fieldError) .applyInput,
+.dateGroup > div:has(.fieldError) .applyInput {
+  border-color: var(--accent);
+}
+
+.applyInput option,
+.applyInput optgroup {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.choiceLabel {
+  align-items: center;
+  color: var(--paper);
+  display: flex;
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 16px;
+  gap: 10px;
+  line-height: 1.4;
+  margin-left: -10px;
+  min-height: 44px;
+  padding: 8px 10px;
+  width: fit-content;
+}
+
+.choiceLabel:hover {
+  background: rgba(244, 241, 239, 0.045);
+}
+
+.choiceLabel input {
+  accent-color: var(--paper);
+  flex: 0 0 auto;
+  height: 20px;
+  margin: 0;
+  width: 20px;
+}
+
+.fieldError,
+.submitError {
+  color: var(--paper);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding-left: 10px;
+  position: relative;
+}
+
+.fieldError::before,
+.submitError::before {
+  background: var(--accent);
+  bottom: 2px;
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 2px;
+  width: 2px;
+}
+
+.counter,
+.counterWarning {
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.counterWarning {
+  color: var(--accent);
+  transition: color 160ms ease;
+}
+
+.roleEntry {
+  gap: 24px;
+  padding: 0;
+}
+
+.roleEntry + .roleEntry {
+  border-top: 1px solid var(--light-line);
+  padding-top: 32px;
+}
+
+.roleHeading,
+.reviewGroup > div {
+  align-items: baseline;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.roleHeading h2,
+.reviewGroup h2 {
+  color: var(--paper);
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.dateGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.monthYear {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.compactLabel {
+  color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 0.86rem;
+  gap: 6px;
+}
+
+.moneyInput {
+  border: 1px solid var(--light-line);
+  display: block;
+  min-height: 50px;
+  padding: 0;
+  position: relative;
+}
+
+.currencyPrefix {
+  font-weight: 400;
+  left: 14px;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.moneyInput .applyInput {
+  border: 0;
+  padding-left: 30px;
+}
+
+.reviewGroup {
+  border-top: 1px solid var(--light-line);
+  gap: 10px;
+  padding-top: 20px;
+}
+
+.reviewGroup p {
+  font-family: var(--font-sans), Arial, sans-serif;
+  line-height: 1.45;
+  margin: 0;
+  max-width: 65ch;
+}
+
+.buttonApply {
+  align-items: center;
+  background: var(--paper);
+  border: 1px solid var(--paper);
+  border-radius: 999px;
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  justify-content: center;
+  letter-spacing: 0.08em;
+  min-height: 50px;
+  padding: 0 26px;
+}
+
+.buttonApply:hover:not(:disabled) {
+  background: transparent;
+  color: var(--paper);
+}
+
+.buttonApply:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.buttonSecondary {
+  background: transparent;
+  color: var(--paper);
+}
+
+.buttonSecondary:hover:not(:disabled) {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.nav,
+.introActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.nav {
+  border-top: 1px solid var(--light-line);
+  padding-top: 24px;
+}
+
+.quietLink {
+  align-self: flex-start;
+  background: transparent;
+  border: 0;
+  color: var(--paper);
+  cursor: pointer;
+  font-family: var(--font-sans), Arial, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.referenceId {
+  color: var(--paper);
+  display: inline-block;
+  font-family: var(--font-serif), Times, serif;
+  font-size: clamp(2rem, 6vw, 3.75rem);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin: 12px 0;
+}
+
+.honeypot {
+  height: 1px;
+  left: -10000px;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+@media (min-width: 700px) {
+  .main {
+    padding-top: 88px;
+  }
+
+  .dateGroup {
+    align-items: end;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .dateGroup > div:first-child {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .dateGroup > div:last-child:not(:first-child) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .dateGroup > .choiceLabel {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
 }

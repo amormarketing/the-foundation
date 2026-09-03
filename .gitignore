@@ -8,6 +8,7 @@
 # local environment files
 .env*
 !.env.example
+.env.local
 
 # debug and OS files
 npm-debug.log*
