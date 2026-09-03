@@ -103,6 +103,8 @@
   align-items: baseline;
   display: flex;
   gap: 4px;
+  text-box-edge: cap alphabetic;
+  text-box-trim: trim-both;
 }
 
 .stepContent,
@@ -220,6 +222,8 @@ select.applyInput {
   margin-left: -10px;
   min-height: 44px;
   padding: 8px 10px;
+  text-box-edge: cap alphabetic;
+  text-box-trim: trim-both;
   width: fit-content;
 }
 
