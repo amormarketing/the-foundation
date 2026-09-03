@@ -1,3 +1,8 @@
+:where(:root) {
+  --font-sans: Arial;
+  --font-serif: Times New Roman;
+}
+
 :root {
   --ink: #161514;
   --paper: #f4f1ef;

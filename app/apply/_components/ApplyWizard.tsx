@@ -191,8 +191,11 @@ export default function ApplyWizard() {
     try {
       const response = await fetch("/api/apply", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...result.data, website }) });
       const body = (await response.json()) as { ok?: unknown; referenceId?: unknown };
-      if (!response.ok || body.ok !== true || typeof body.referenceId !== "string") throw new Error();
-      setReferenceId(body.referenceId); clearStoredDraft(); setView("confirmation");
+      if (response.ok && body.ok === true && typeof body.referenceId === "string") {
+        setReferenceId(body.referenceId); clearStoredDraft(); setView("confirmation");
+      } else {
+        setSubmitState("error");
+      }
     } catch {
       setSubmitState("error");
     }
