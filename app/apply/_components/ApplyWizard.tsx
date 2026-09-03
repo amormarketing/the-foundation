@@ -120,7 +120,7 @@ export default function ApplyWizard() {
   }, [draft, hydrated, view]);
 
   useEffect(() => {
-    if (view !== "wizard") return;
+    if (view === "intro") return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
     window.requestAnimationFrame(() => headingRef.current?.focus());
@@ -189,9 +189,9 @@ export default function ApplyWizard() {
     if (!result.success) { showSchemaErrors(result); return; }
     setSubmitState("submitting");
     try {
-      const response = await fetch("/api/apply", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...result.data, website }) });
+      const response = await fetch("/api/apply", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...draft, website }) });
       const body = (await response.json()) as { ok?: unknown; referenceId?: unknown };
-      if (response.ok && body.ok === true && typeof body.referenceId === "string") {
+      if (response.status === 200 && body.ok === true && typeof body.referenceId === "string") {
         setReferenceId(body.referenceId); clearStoredDraft(); setView("confirmation");
       } else {
         setSubmitState("error");
@@ -221,14 +221,14 @@ export default function ApplyWizard() {
 
   if (view === "ineligible") {
     return <main className={styles.main}><section className={styles.wizard}>
-      <h1 className={styles.heading}>Leadership Scholarship.</h1>
+      <h1 className={styles.heading} ref={headingRef} tabIndex={-1}>Leadership Scholarship.</h1>
       <p className={styles.copy}>This scholarship is for high school seniors and current or returning college students in the US. If that&apos;s you next year, we&apos;d like to hear from you then.</p>
       <Link className={styles.quietLink} href="/">Return home</Link>
     </section></main>;
   }
   if (view === "confirmation") {
     return <main className={styles.main}><section className={styles.wizard}>
-      <h1 className={styles.heading}>Application received.</h1>
+      <h1 className={styles.heading} ref={headingRef} tabIndex={-1}>Application received.</h1>
       <p className={styles.copy}>Your reference number is <span className={styles.referenceId}>{referenceId}</span>. Save it — you&apos;ll need it if you contact us. We&apos;ll email you at {draft.email} with a decision by {formatDate(DATES.decision)}. If you&apos;re a finalist, we&apos;ll ask for a transcript and contact your reference.</p>
       <Link className={styles.quietLink} href="/">Return home</Link>
     </section></main>;
