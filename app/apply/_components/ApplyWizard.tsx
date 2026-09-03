@@ -300,7 +300,7 @@ export default function ApplyWizard() {
           <p className={styles.helper} id={"formal-help-" + index}>Informal counts. Running the family business, organizing something nobody asked you to organize, taking care of younger siblings so a parent could work — if you were responsible for people or outcomes, it belongs here.</p>
           <ErrorText error={errorFor(roleKey(index, "formal"))} field={roleKey(index, "formal")} />
         </fieldset>
-        <fieldset className={styles.fieldset}><legend>When <RequiredMark /></legend>
+        <fieldset className={styles.fieldset}><legend className={styles.visuallyHidden}>Role dates</legend>
           <div className={styles.dateGroup}>
             <div><p className={styles.dateLabel}>Started <RequiredMark /></p>{renderMonthYear(index, "start")}<ErrorText error={errorFor(roleKey(index, "startMonth"))} field={roleKey(index, "startMonth")} /></div>
             <label className={styles.choiceLabel}><input type="checkbox" checked={role.current} onChange={(event) => updateCurrentRole(index, event.target.checked)} />Still doing this</label>
@@ -311,7 +311,7 @@ export default function ApplyWizard() {
           <input className={styles.applyInput} type="number" min="0" max="10000" inputMode="numeric" value={role.people} required aria-required="true" aria-describedby={describedBy(roleKey(index, "people"))} data-error-key={roleKey(index, "people")} onChange={(event) => updateRole(index, "people", event.target.value)} />
           <ErrorText error={errorFor(roleKey(index, "people"))} field={roleKey(index, "people")} />
         </label>
-        <label className={styles.applyLabel}><span className={styles.labelText}>Hours per week, roughly <RequiredMark /></span>
+        <label className={styles.applyLabel}><span className={styles.labelText}>How many hours per week, roughly?<RequiredMark /></span>
           <input className={styles.applyInput} type="number" min="1" max="80" inputMode="numeric" value={role.hoursPerWeek} required aria-required="true" aria-describedby={describedBy(roleKey(index, "hoursPerWeek"))} data-error-key={roleKey(index, "hoursPerWeek")} onChange={(event) => updateRole(index, "hoursPerWeek", event.target.value)} />
           <ErrorText error={errorFor(roleKey(index, "hoursPerWeek"))} field={roleKey(index, "hoursPerWeek")} />
         </label>

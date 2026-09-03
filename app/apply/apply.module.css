@@ -127,6 +127,17 @@
   padding: 0;
 }
 
+.visuallyHidden {
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 .fieldset legend,
 .applyLabel,
 .dateLabel {
@@ -212,15 +223,16 @@ select.applyInput {
 }
 
 .choiceLabel {
-  align-items: center;
+
   color: var(--paper);
   display: flex;
+  align-items: end;
   font-family: var(--font-sans), Arial, sans-serif;
   font-size: 16px;
   gap: 10px;
-  line-height: 1.4;
+  line-height: 1;
   margin-left: -10px;
-  min-height: 44px;
+  min-height: auto;
   padding: 8px 10px;
   text-box-edge: cap alphabetic;
   text-box-trim: trim-both;

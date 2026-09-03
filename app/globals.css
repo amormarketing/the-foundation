@@ -186,7 +186,7 @@ summary {
 }
 
 .header-cta {
-  align-items: center;
+  align-items: end;
   display: inline-flex;
   font-size: 0.72rem;
   font-weight: 600;
