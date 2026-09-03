@@ -1,8 +1,5 @@
-import Link from "next/link";
-import styles from "./apply.module.css";
-import ApplicationWizard from "./ApplicationWizard";
-
+import ApplyWizard from "./_components/ApplyWizard";
 
 export default function ApplyPage() {
-    return <ApplicationWizard />;
+  return <ApplyWizard />;
 }
