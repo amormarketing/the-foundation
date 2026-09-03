@@ -9,7 +9,7 @@ export default function Footer() {
                     src="/assets/thefoundlogowh.svg"
                     alt="The Foundation"
                     />
-                <p>Wisdom · Strength · Truth</p>
+                <p>Educating our future</p>
             </div>
             <div className="footer-column">
                 <span>Contact</span>
@@ -27,7 +27,7 @@ export default function Footer() {
                     </a>
                     <br />
                     <br />
-                    EIN No. 1234567
+                    EIN No. 42-3732209
                 </p>
             </div>
             <div className="footer-column">
