@@ -62,10 +62,12 @@ export default function ApplicationWizard() {
 
     if (step === "intro") {
         return (
-            <main>
-                <h1 className={styles.heading}>Apply</h1>
-                <p className={styles.lead}>Tell us about yourself</p>
-                <button className={styles.button_apply} onClick={() => setStep("contact")}>Begin</button>
+            <main className={styles.main}>
+                <div className={styles.apply}>
+                    <h1 className={styles.heading}>Apply</h1>
+                    <p className={styles.lead}>Tell us about yourself</p>
+                </div>
+                    <button className={styles.button_apply} onClick={() => setStep("contact")}>Begin</button>
             </main>
         );
     }
@@ -130,7 +132,7 @@ export default function ApplicationWizard() {
 
                     <label className={styles.apply_label}>
                         Why would you like to apply?
-                        <textarea
+                        <textarea className={styles.textarea}
                             value={draft.whyApply}
                             onChange={(event) => updateField("whyApply", event.target.value)}
                             />
@@ -149,7 +151,7 @@ export default function ApplicationWizard() {
 
             {error && <p className={styles.lead} role="alert">{error}</p>}
 
-            <nav>
+            <nav className={styles.nav}>
                 {step !== "contact" && (
                     <button
                         className={styles.button_apply}
@@ -168,7 +170,8 @@ export default function ApplicationWizard() {
                     ) : (
                     <button
                         className={styles.button_apply}
-                        type="button" onClick={() => console.log(draft)}>
+                        type="button"
+                        onClick={() => console.log(draft)}>
                         Submit application
                     </button>
                 )}

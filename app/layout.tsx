@@ -4,13 +4,17 @@ import "./globals.css";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 
-
 const sans = localFont({
-  src: "./fonts/Neue.100.otf",
+  src: "../public/fonts/Neue.100.otf",
   variable: "--font-sans",
   display: "swap",
 });
 
+const serif = localFont({
+  src: "../public/fonts/bookish.regular.otf",
+  variable: "--font-serif",
+  display: "swap",
+});
 export const metadata: Metadata = {
   title: "The Foundation | Educating our future.",
   description:
@@ -25,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={sans.variable}>
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body>
       <Header />
       {children}
