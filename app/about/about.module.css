@@ -5,52 +5,104 @@
 
 .hero {
     align-items: center;
-    color: white;
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    color: var(--ink);
     display: flex;
-    height: min(850px, calc(100svh - 80px));
-    isolation: isolate;
     justify-content: center;
-    min-height: 650px;
-    overflow: clip;
-    position: relative;
-    gap: 32px;
+    padding: clamp(72px, 9vw, 132px) clamp(24px, 6.25vw, 100px) clamp(84px, 11vw, 160px);
 }
 
 .about {
     display: grid;
-    gap: clamp(56px, 7vw, 112px);
-    grid-template-columns: minmax(320px, 0.82fr) minmax(420px, 1.18fr);
+    gap: clamp(28px, 4vw, 64px);
+    grid-template-columns: clamp(48px, 7vw, 92px) minmax(260px, 0.8fr) minmax(300px, 0.9fr);
     margin: 0 auto;
     max-width: var(--max-width);
-    min-height: calc(100svh - 80px);
-    padding: clamp(72px, 8vw, 128px) clamp(24px, 6.25vw, 100px);
+    width: 100%;
+}
+
+.founderIndex {
+    align-self: stretch;
+    border-right: 1px solid var(--line);
+    color: var(--accent);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-sans), Arial, sans-serif;
+    font-size: 0.63rem;
+    font-weight: 600;
+    justify-content: space-between;
+    letter-spacing: 0.13em;
+    padding: 2px 18px 2px 0;
+    text-transform: uppercase;
+}
+
+.founderIndex span:last-child {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.aboutHeading {
+    align-self: center;
+    max-width: 520px;
+    padding: 24px 0 34px;
+}
+
+.founderKicker {
+    color: var(--accent);
+    display: block;
+    font-family: var(--font-sans), Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
 }
 
 .heading {
     font-family: var(--font-serif), Times, serif;
-    font-size: clamp(4.5rem, 8vw, 8rem);
+    font-size: clamp(3.2rem, 5.8vw, 6.2rem);
     font-weight: 500;
     letter-spacing: -0.065em;
     line-height: 0.82;
-    margin: clamp(34px, 5vw, 72px) 0 0;
+    margin: 24px 0 0;
     color: var(--ink);
 }
 
 .lead {
     font-family: var(--font-serif), Times, serif;
-    font-size: clamp(1.25rem, 1.8vw, 1.65rem);
-    line-height: 1.45;
-    margin: 30px 0 0;
-    max-width: 390px;
+    font-size: clamp(1.05rem, 1.35vw, 1.3rem);
+    line-height: 1.52;
+    margin: 28px 0 0;
+    max-width: 430px;
     color: var(--ink);
 }
 
+.founderRule {
+    background: var(--line);
+    height: 1px;
+    margin-top: 34px;
+    width: min(100%, 250px);
+}
+
+.founderNote {
+    color: var(--accent);
+    font-family: var(--font-sans), Arial, sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    line-height: 1.4;
+    margin: 14px 0 0;
+    max-width: 220px;
+    text-transform: uppercase;
+}
+
 .visual {
-    align-self: start;
+    align-self: center;
+    justify-self: end;
     margin: 0;
+    max-width: 470px;
     min-width: 0;
-    position: sticky;
-    top: 100px;
+    position: relative;
+    width: 100%;
 }
 
 .imageFrame {
@@ -58,8 +110,18 @@
     background: var(--paper-deep);
     overflow: hidden;
     position: relative;
+    z-index: 1;
 }
 
+.visual::before {
+    background: var(--accent);
+    content: "";
+    height: 72%;
+    position: absolute;
+    right: -14px;
+    top: -14px;
+    width: 62%;
+}
 
 .hero__image {
     filter: grayscale(1) contrast(1.04);
@@ -70,4 +132,181 @@
             filter 350ms ease,
             transform 700ms ease;
     width: 100%;
+}
+
+.caption {
+    color: var(--accent);
+    font-family: var(--font-sans), Arial, sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    margin-top: 13px;
+    text-transform: uppercase;
+}
+
+.board {
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(72px, 9vw, 140px) clamp(24px, 6.25vw, 100px) clamp(90px, 11vw, 170px);
+}
+
+.boardIntro,
+.boardGrid {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--max-width);
+}
+
+.boardIntro {
+    margin-bottom: clamp(48px, 6vw, 86px);
+}
+
+.boardKicker {
+    font-family: var(--font-sans), Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.boardTitle {
+    color: var(--paper);
+    font-family: var(--font-serif), Times, serif;
+    font-size: clamp(3.5rem, 6.5vw, 6.6rem);
+    font-weight: 500;
+    letter-spacing: -0.065em;
+    line-height: 0.82;
+    margin: 28px 0 0;
+}
+
+.boardGrid {
+    display: grid;
+    gap: clamp(28px, 3vw, 48px) clamp(18px, 2.4vw, 36px);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 1320px;
+}
+
+.boardCard {
+    min-width: 0;
+}
+
+.boardPhoto {
+    aspect-ratio: 4 / 5;
+    background: #245dff;
+    overflow: hidden;
+    position: relative;
+}
+
+.boardPhoto::before {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    content: "";
+    height: 72%;
+    left: 14%;
+    position: absolute;
+    top: 14%;
+    transform: rotate(-24deg);
+    width: 72%;
+}
+
+.boardPhoto::after {
+    background: var(--paper);
+    content: "";
+    height: 1px;
+    left: 10%;
+    opacity: 0.75;
+    position: absolute;
+    top: 50%;
+    transform: rotate(-24deg);
+    width: 80%;
+}
+
+.boardNumber {
+    font-family: var(--font-sans), Arial, sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    position: absolute;
+    right: 14px;
+    top: 14px;
+}
+
+.boardMark {
+    border: 1px solid var(--paper);
+    border-radius: 50%;
+    bottom: 16px;
+    height: 9px;
+    left: 16px;
+    position: absolute;
+    width: 9px;
+}
+
+.boardDetails {
+    border-bottom: 1px solid rgba(244, 241, 239, 0.35);
+    padding: 17px 0 15px;
+}
+
+.boardDetails h3 {
+    font-family: var(--font-serif), Times, serif;
+    font-size: clamp(1.2rem, 1.7vw, 1.55rem);
+    font-weight: 400;
+    line-height: 1;
+    margin: 0;
+}
+
+.boardDetails p {
+    color: rgba(244, 241, 239, 0.7);
+    font-family: var(--font-sans), Arial, sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    margin: 11px 0 0;
+    text-transform: uppercase;
+}
+
+@media (max-width: 860px) {
+    .about {
+        grid-template-columns: 48px minmax(0, 1fr) minmax(280px, 0.9fr);
+    }
+
+    .about {
+        gap: 28px;
+    }
+
+    .aboutHeading {
+        padding-bottom: 0;
+    }
+
+    .visual {
+        margin-left: auto;
+        max-width: 620px;
+        width: 100%;
+    }
+
+    .boardGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .hero {
+        padding-top: 64px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .founderIndex {
+        border-bottom: 1px solid var(--line);
+        border-right: 0;
+        flex-direction: row;
+        padding: 0 0 14px;
+    }
+
+    .founderIndex span:last-child {
+        writing-mode: initial;
+        transform: none;
+    }
+
+    .boardGrid {
+        grid-template-columns: 1fr;
+    }
 }

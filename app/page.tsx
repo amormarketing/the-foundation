@@ -35,13 +35,13 @@ const universityVoices = [
     university: "Student voice",
     name: "Alex",
     quote:
-      "I have seen firsthand the positive impact of Meyer Marilla's conservation efforts.",
+      "I have seen firsthand the positive impact of The Foundation's education efforts.",
   },
   {
     university: "Student voice",
     name: "Javier",
     quote:
-      "The work Meyer Marilla does for the environment is inspiring and crucial.",
+      "The work The Foundation does for the our next generation is inspiring and crucial.",
   },
 ];
 
@@ -207,8 +207,7 @@ export default function Home() {
             <div className="section-number">04 / Connect</div>
             <h2 id="contact-title">Get in Touch</h2>
             <p>
-              Feel free to contact us for any inquiries or to learn more about
-              our conservation projects and initiatives.
+              “Contact us to learn more about our scholarships, financial literacy programs, and educational initiatives.”
             </p>
             <a
               className="contact__email"

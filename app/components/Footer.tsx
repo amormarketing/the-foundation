@@ -9,7 +9,7 @@ export default function Footer() {
                     src="/assets/thefoundlogowh.svg"
                     alt="The Foundation"
                     />
-                <p>Educating our future</p>
+                <p>Educating our future.</p>
             </div>
             <div className="footer-column">
                 <span>Contact</span>
@@ -20,6 +20,31 @@ export default function Footer() {
                 <a href="mailto:info@thefoundationus.org">
                     info@thefoundationus.org
                 </a>
+
+                <div className="footer-icons">
+                    <a href="https://www.linkedin.com/company/the-foundation-us/" aria-label="LinkedIn">
+                        <img
+                            src="/assets/icons/SVG/blackAsset 33-linkedin.svg"
+                            alt="LinkedIn"
+                        />
+                    </a>
+
+                    <a href="https://www.instagram.com/thefoundation.us/" aria-label="Instagram">
+                        <img
+                            src="/assets/icons/SVG/blackAsset 34-ig.svg"
+                            alt="Instagram"
+                        />
+                    </a>
+
+                    <a href="https://www.facebook.com/profile.php?id=61594048237443" aria-label="Facebook">
+                        <img
+                            src="/assets/icons/SVG/blackAsset 35-facebook.svg"
+                            alt="Facebook"
+                        />
+                    </a>
+
+                </div>
+
                 <p>
                     The Foundation US is a registered{" "}
                     <a href="/assets/IRS 501c3 - The Foundation US.pdf" target="_blank" rel="noopener noreferrer">
