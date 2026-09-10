@@ -192,51 +192,10 @@
 .boardPhoto {
     aspect-ratio: 4 / 5;
     background: #245dff;
+    background-position: center;
+    background-size: cover;
     overflow: hidden;
     position: relative;
-}
-
-.boardPhoto::before {
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    content: "";
-    height: 72%;
-    left: 14%;
-    position: absolute;
-    top: 14%;
-    transform: rotate(-24deg);
-    width: 72%;
-}
-
-.boardPhoto::after {
-    background: var(--paper);
-    content: "";
-    height: 1px;
-    left: 10%;
-    opacity: 0.75;
-    position: absolute;
-    top: 50%;
-    transform: rotate(-24deg);
-    width: 80%;
-}
-
-.boardNumber {
-    font-family: var(--font-sans), Arial, sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-    position: absolute;
-    right: 14px;
-    top: 14px;
-}
-
-.boardMark {
-    border: 1px solid var(--paper);
-    border-radius: 50%;
-    bottom: 16px;
-    height: 9px;
-    left: 16px;
-    position: absolute;
-    width: 9px;
 }
 
 .boardDetails {

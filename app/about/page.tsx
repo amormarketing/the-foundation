@@ -3,10 +3,26 @@ import Image from "next/image";
 import aboutHero from "@/public/Ross-portrait.avif";
 
 const boardMembers = [
-    { name: "Ross Pendergraft", role: "Founder" },
-    { name: "Alexander Hessi", role: "President" },
-    { name: "Mateo Elvira", role: "Marketing" },
-    { name: "Nupur Kumar", role: "Treasury & Secretary" },
+    {
+        name: "Ross Pendergraft",
+        role: "Founder",
+        image: "/Ross-portrait.avif"
+    },
+    {
+        name: "Alexander Hessi",
+        role: "President",
+        image: "/assets/Alexander Hessi.webp",
+    },
+    {
+        name: "Mateo Elvira",
+        role: "Marketing",
+        image: "/assets/Mateo Elvia.webp",
+    },
+    {
+        name: "Nupur Kumar",
+        role: "Treasury & Secretary",
+        image: "/assets/nupur-kumar-2.jpg",
+    },
 ];
 
 
@@ -21,9 +37,15 @@ export default function AboutPage() {
                 <div className={styles.boardGrid}>
                     {boardMembers.map((member, index) => (
                         <article className={styles.boardCard} key={member.name}>
-                            <div className={styles.boardPhoto} aria-label={`Photo placeholder for ${member.name}`}>
-                                <span className={styles.boardNumber}>0{index + 1}</span>
-                                <span className={styles.boardMark} aria-hidden="true" />
+                            <div
+                                className={styles.boardPhoto}
+                                style={
+                                    member.image
+                                        ? { backgroundImage: `url("${member.image}")` }
+                                        : undefined
+                                }
+                                aria-label={`Photo placeholder for ${member.name}`}
+                            >
                             </div>
                             <div className={styles.boardDetails}>
                                 <h3>{member.name}</h3>
