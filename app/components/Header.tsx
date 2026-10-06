@@ -6,7 +6,7 @@ function Brand() {
         <div className="brand">
             <img
                 className="brand__logo"
-                src="/assets/thefoundlogowh.svg"
+                src="/assets/wordmark-ink.svg"
                 alt="The Foundation"
             />
         </div>
@@ -55,8 +55,9 @@ export default function Header() {
                         <Link href="/">Home</Link>
                         <Link href="/about">About</Link>
                         <Link href="/#universities">Blog</Link>
-                        <Link href="/#process">Initiatives</Link>
+                        <Link href="/#initiatives">Initiatives</Link>
                         <Link href="/donate">Donate</Link>
+                        <Link href="/apply">Apply</Link>
                     </nav>
                 </details>
             </header>

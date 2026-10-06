@@ -131,7 +131,6 @@ summary {
   display: block;
   height: max-content;
   width: 180px;
-  filter: brightness(0);
 }
 
 .brand--hero .brand__logo {
@@ -840,12 +839,17 @@ h3 {
 
 @media (max-width: 960px) {
   .site-header {
-    grid-template-columns: 1fr auto;
+    column-gap: 24px;
+    grid-template-columns: 1fr auto auto;
     height: 82px;
   }
 
-  .desktop-nav,
-  .header-cta {
+  .desktop-nav {
+    display: none;
+  }
+
+  /* Beside "Menu" the arrow reads as pointing at it, so drop it here. */
+  .header-cta svg {
     display: none;
   }
 
@@ -946,7 +950,12 @@ h3 {
 
 @media (max-width: 640px) {
   .site-header {
+    column-gap: 16px;
     padding: 0 20px;
+  }
+
+  .site-header .brand__logo {
+    width: 150px;
   }
 
   .brand--hero .brand__name {
@@ -1034,6 +1043,17 @@ h3 {
   .footer-column--last {
     grid-column: 1 / -1;
     margin-top: 25px;
+  }
+}
+
+@media (max-width: 347px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+  }
+
+  /* No room beside the wordmark and Menu; Apply stays in the mobile menu. */
+  .header-cta {
+    display: none;
   }
 }
 

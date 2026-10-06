@@ -8,6 +8,14 @@ const sans = localFont({
   src: "../public/fonts/Neue.100.otf",
   variable: "--font-sans",
   display: "swap",
+  // The file's ascent (718) equals its cap height (720), so text renders high in
+  // its line box. Rebalance ascent/descent around the cap height, keeping the
+  // 1em total so line heights are unchanged.
+  declarations: [
+    { prop: "ascent-override", value: "86%" },
+    { prop: "descent-override", value: "14%" },
+    { prop: "line-gap-override", value: "20%" },
+  ],
 });
 
 const serif = localFont({

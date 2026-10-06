@@ -6,7 +6,7 @@ export default function Footer() {
             <div className="footer-brand">
                 <img
                     className="brand__logo"
-                    src="/assets/thefoundlogowh.svg"
+                    src="/assets/wordmark-ink.svg"
                     alt="The Foundation"
                     />
                 <p>Educating our future.</p>
@@ -58,7 +58,7 @@ export default function Footer() {
             <div className="footer-column">
                 <span>Explore</span>
                 <Link href="/about">About</Link>
-                <Link href="/#process">Initiatives</Link>
+                <Link href="/#initiatives">Initiatives</Link>
                 <Link href="/#contact">Join us</Link>
             </div>
             <div className="footer-column footer-column--last">
