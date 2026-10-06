@@ -484,6 +484,7 @@ select.applyInput {
 
 .nav,
 .introActions {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
@@ -494,8 +495,13 @@ select.applyInput {
   padding-top: 24px;
 }
 
-.quietLink {
+/* In the stacked (column) layouts, keep the link to its own width. */
+.wizard > .quietLink,
+.stepContent > .quietLink {
   align-self: flex-start;
+}
+
+.quietLink {
   background: transparent;
   border: 0;
   color: var(--paper);

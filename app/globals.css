@@ -115,6 +115,7 @@ summary {
 }
 
 .header-brand {
+  display: flex;
   justify-self: start;
 }
 
@@ -190,7 +191,7 @@ summary {
 }
 
 .header-cta {
-  align-items: end;
+  align-items: center;
   display: inline-flex;
   font-size: 0.72rem;
   font-weight: 600;
