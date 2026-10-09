@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SocialLinks from "@/app/components/SocialLinks";
 
 
 function Brand() {
@@ -36,14 +37,16 @@ export default function Header() {
                 <nav className="desktop-nav" aria-label="Primary navigation" >
                     <Link href="/">Home</Link>
                     <Link href="/about">About</Link>
-                    <Link href="/#universities">Blog</Link>
                     <Link href="/#initiatives">Initiatives</Link>
                     <Link href="/donate">Donate</Link>
                 </nav>
 
-                <Link className="header-cta" href="/apply">
-                    Apply <ArrowIcon />
-                </Link>
+                <div className="header-end">
+                    <SocialLinks className="header-social" />
+                    <Link className="header-cta" href="/apply">
+                        Apply <ArrowIcon />
+                    </Link>
+                </div>
 
                 <details className="mobile-menu">
                     <summary aria-label="Open navigation">
@@ -54,10 +57,10 @@ export default function Header() {
                     <nav aria-label="Mobile navigation">
                         <Link href="/">Home</Link>
                         <Link href="/about">About</Link>
-                        <Link href="/#universities">Blog</Link>
-                        <Link href="/#initiatives">Initiatives</Link>
+                            <Link href="/#initiatives">Initiatives</Link>
                         <Link href="/donate">Donate</Link>
                         <Link href="/apply">Apply</Link>
+                        <SocialLinks className="mobile-menu__social" />
                     </nav>
                 </details>
             </header>

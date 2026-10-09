@@ -190,13 +190,38 @@ summary {
   transform-origin: left;
 }
 
+.header-end {
+  align-items: center;
+  display: flex;
+  gap: clamp(22px, 2.5vw, 36px);
+  justify-self: end;
+}
+
+.header-social,
+.mobile-menu__social {
+  display: flex;
+  gap: 14px;
+}
+
+.header-social img,
+.mobile-menu__social img {
+  display: block;
+  height: 18px;
+  transition: opacity 220ms ease;
+  width: 18px;
+}
+
+.header-social a:hover img,
+.mobile-menu__social a:hover img {
+  opacity: 0.6;
+}
+
 .header-cta {
   align-items: center;
   display: inline-flex;
   font-size: 0.72rem;
   font-weight: 600;
   gap: 10px;
-  justify-self: end;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -498,7 +523,6 @@ h3 {
 }
 
 .section-heading h2,
-.universities h2,
 .contact h2 {
   font-size: clamp(4rem, 7vw, 7rem);
   letter-spacing: -0.055em;
@@ -565,71 +589,6 @@ h3 {
   line-height: 1.5;
   max-width: 230px;
   text-transform: uppercase;
-}
-
-.universities {
-  border-top: 1px solid var(--line);
-  padding-bottom: clamp(110px, 12vw, 190px);
-  padding-top: clamp(100px, 10vw, 160px);
-}
-
-.voices {
-  display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: clamp(70px, 8vw, 120px);
-}
-
-.voice {
-  border: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  min-height: 360px;
-  padding: clamp(28px, 3vw, 48px);
-  transition:
-    background-color 220ms ease,
-    color 220ms ease,
-    transform 220ms ease;
-}
-
-.voice:hover {
-  background: var(--paper-deep);
-  transform: translateY(-5px);
-}
-
-.voice--featured,
-.voice--featured:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: white;
-}
-
-.voice__university,
-.voice__name {
-  font-size: 0.64rem;
-  font-weight: 600;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.voice blockquote {
-  font-family: var(--font-serif), Times, serif;
-  font-size: clamp(1.55rem, 2.15vw, 2.3rem);
-  letter-spacing: -0.025em;
-  line-height: 1.14;
-  margin: 58px 0 40px;
-}
-
-.voice strong {
-  font-family: var(--font-serif), Times, serif;
-  font-size: clamp(3rem, 5vw, 5.5rem);
-  font-weight: 500;
-  letter-spacing: -0.055em;
-  margin: auto 0;
-}
-
-.voice__name {
-  margin-top: auto;
 }
 
 .contact {
@@ -845,7 +804,8 @@ h3 {
     height: 82px;
   }
 
-  .desktop-nav {
+  .desktop-nav,
+  .header-social {
     display: none;
   }
 
@@ -902,6 +862,15 @@ h3 {
     top: 52px;
   }
 
+  .mobile-menu__social {
+    padding: 18px 4px 4px;
+  }
+
+  .mobile-menu nav .mobile-menu__social a {
+    border-bottom: 0;
+    padding: 0;
+  }
+
   .mobile-menu nav a {
     border-bottom: 1px solid var(--line);
     font-family: var(--font-serif), Times, serif;
@@ -925,14 +894,6 @@ h3 {
 
   .principles {
     margin-left: 0;
-  }
-
-  .voices {
-    grid-template-columns: 1fr;
-  }
-
-  .voice {
-    min-height: 300px;
   }
 
   .contact {
@@ -998,7 +959,6 @@ h3 {
   }
 
   .section-heading h2,
-  .universities h2,
   .contact h2,
   .mission h2,
   .impact h2 {
@@ -1053,7 +1013,7 @@ h3 {
   }
 
   /* No room beside the wordmark and Menu; Apply stays in the mobile menu. */
-  .header-cta {
+  .header-end {
     display: none;
   }
 }

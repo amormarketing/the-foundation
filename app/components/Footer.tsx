@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SocialLinks from "@/app/components/SocialLinks";
 
 export default function Footer() {
     return (
@@ -21,29 +22,7 @@ export default function Footer() {
                     info@thefoundationus.org
                 </a>
 
-                <div className="footer-icons">
-                    <a href="https://www.linkedin.com/company/the-foundation-us/" aria-label="LinkedIn">
-                        <img
-                            src="/assets/icons/SVG/blackAsset 33-linkedin.svg"
-                            alt="LinkedIn"
-                        />
-                    </a>
-
-                    <a href="https://www.instagram.com/thefoundation.us/" aria-label="Instagram">
-                        <img
-                            src="/assets/icons/SVG/blackAsset 34-ig.svg"
-                            alt="Instagram"
-                        />
-                    </a>
-
-                    <a href="https://www.facebook.com/profile.php?id=61594048237443" aria-label="Facebook">
-                        <img
-                            src="/assets/icons/SVG/blackAsset 35-facebook.svg"
-                            alt="Facebook"
-                        />
-                    </a>
-
-                </div>
+                <SocialLinks className="footer-icons" />
 
                 <p>
                     The Foundation US is a registered{" "}

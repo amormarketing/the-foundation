@@ -25,26 +25,6 @@ const principles = [
   },
 ];
 
-const universityVoices = [
-  {
-    university: "LACCD",
-    name: "Diana",
-    featured: true,
-  },
-  {
-    university: "Student voice",
-    name: "Alex",
-    quote:
-      "I have seen firsthand the positive impact of The Foundation's education efforts.",
-  },
-  {
-    university: "Student voice",
-    name: "Javier",
-    quote:
-      "The work The Foundation does for the our next generation is inspiring and crucial.",
-  },
-];
-
 // function FlameMark({ className = "" }: { className?: string }) {
 //   return (
 //     <svg
@@ -173,38 +153,12 @@ export default function Home() {
         </section>
 
         <section
-          className="universities light-section"
-          id="universities"
-          aria-labelledby="universities-title"
-        >
-          <div className="section-number">03 / Community</div>
-          <h2 id="universities-title">Universities Involved</h2>
-
-          <div className="voices">
-            {universityVoices.map((voice) => (
-              <article
-                className={`voice${voice.featured ? " voice--featured" : ""}`}
-                key={voice.name}
-              >
-                <span className="voice__university">{voice.university}</span>
-                {voice.quote ? (
-                  <blockquote>“{voice.quote}”</blockquote>
-                ) : (
-                  <strong>LACCD</strong>
-                )}
-                <span className="voice__name">— {voice.name}</span>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
           className="contact light-section"
           id="contact"
           aria-labelledby="contact-title"
         >
           <div className="contact__intro">
-            <div className="section-number">04 / Connect</div>
+            <div className="section-number">03 / Connect</div>
             <h2 id="contact-title">Get in Touch</h2>
             <p>
               “Contact us to learn more about our scholarships, financial literacy programs, and educational initiatives.”
