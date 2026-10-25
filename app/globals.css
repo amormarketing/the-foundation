@@ -797,7 +797,8 @@ h3 {
 /*  }*/
 /*}*/
 
-@media (max-width: 960px) {
+/* The five-link nav needs about 1010px beside the wordmark and Apply. */
+@media (max-width: 1080px) {
   .site-header {
     column-gap: 24px;
     grid-template-columns: 1fr auto auto;
@@ -881,7 +882,9 @@ h3 {
   .hero {
     height: calc(100svh - 82px);
   }
+}
 
+@media (max-width: 960px) {
   .mission,
   .contact,
   .impact {

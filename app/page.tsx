@@ -153,12 +153,32 @@ export default function Home() {
         </section>
 
         <section
+          className="impact dark-section"
+          id="scholarships"
+          aria-labelledby="impact-title"
+        >
+          <div className="impact__label">03 / Scholarships</div>
+          <div>
+            <h2 id="impact-title">Scholarships for students who lead.</h2>
+            <p>
+              The Leadership Excellence Scholarship awards $1,000 or more to
+              students who have made a positive impact in their school,
+              community, or personal endeavors. Submitted applications are
+              evaluated every quarter of the year.
+            </p>
+            <a className="text-link text-link--light" href="/scholarships">
+              Explore scholarships <ArrowIcon />
+            </a>
+          </div>
+        </section>
+
+        <section
           className="contact light-section"
           id="contact"
           aria-labelledby="contact-title"
         >
           <div className="contact__intro">
-            <div className="section-number">03 / Connect</div>
+            <div className="section-number">04 / Connect</div>
             <h2 id="contact-title">Get in Touch</h2>
             <p>
               “Contact us to learn more about our scholarships, financial literacy programs, and educational initiatives.”
@@ -228,17 +248,6 @@ export default function Home() {
               Send message <ArrowIcon />
             </button>
           </form>
-        </section>
-
-        <section className="impact dark-section" aria-labelledby="impact-title">
-          <div className="impact__label">Education access</div>
-          <div>
-            <h2 id="impact-title">Number of adults</h2>
-            <p>
-              Without a college degree who believe most Americans have access to
-              a quality, affordable education.
-            </p>
-          </div>
         </section>
       </main>
     </>

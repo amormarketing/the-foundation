@@ -1,7 +1,16 @@
 import Image from "next/image";
+import Link from "next/link";
 import donateHero from "@/public/donate-hero.webp";
 import DonationForm from "./DonationForm";
 import styles from "./donate.module.css";
+
+function ArrowIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24">
+      <path d="M5 12h13M13 6l6 6-6 6" />
+    </svg>
+  );
+}
 
 export default function DonatePage() {
   return (
@@ -17,6 +26,9 @@ export default function DonatePage() {
               Help give the next generation the knowledge, confidence, and
               opportunity to build a stronger future.
             </p>
+            <Link className="text-link" href="/scholarships#create">
+              Create a named scholarship <ArrowIcon />
+            </Link>
           </div>
 
           <DonationForm />

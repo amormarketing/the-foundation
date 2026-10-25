@@ -10,6 +10,7 @@ export const runtime = "nodejs";
 
 const REFERENCE_ID_CHARACTERS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 const AIRTABLE_SCHOOL_LEVELS: Readonly<Record<string, string>> = {
+  hs_junior: "HS Junior",
   hs_senior: "HS Senior",
   undergrad: "Undergraduate",
   returning: "Returning/Starting",

@@ -37,6 +37,7 @@ export default function Header() {
                 <nav className="desktop-nav" aria-label="Primary navigation" >
                     <Link href="/">Home</Link>
                     <Link href="/about">About</Link>
+                    <Link href="/scholarships">Scholarships</Link>
                     <Link href="/#initiatives">Initiatives</Link>
                     <Link href="/donate">Donate</Link>
                 </nav>
@@ -57,7 +58,8 @@ export default function Header() {
                     <nav aria-label="Mobile navigation">
                         <Link href="/">Home</Link>
                         <Link href="/about">About</Link>
-                            <Link href="/#initiatives">Initiatives</Link>
+                        <Link href="/scholarships">Scholarships</Link>
+                        <Link href="/#initiatives">Initiatives</Link>
                         <Link href="/donate">Donate</Link>
                         <Link href="/apply">Apply</Link>
                         <SocialLinks className="mobile-menu__social" />

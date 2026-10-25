@@ -37,6 +37,7 @@ export default function Footer() {
             <div className="footer-column">
                 <span>Explore</span>
                 <Link href="/about">About</Link>
+                <Link href="/scholarships">Scholarships</Link>
                 <Link href="/#initiatives">Initiatives</Link>
                 <Link href="/#contact">Join us</Link>
             </div>

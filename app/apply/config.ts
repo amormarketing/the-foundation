@@ -1,15 +1,16 @@
 export const SCHOOL_LEVELS = [
+  { value: "hs_junior", label: "High school junior" },
   { value: "hs_senior", label: "High school senior" },
   { value: "undergrad", label: "Currently in college" },
   {
     value: "returning",
     label: "Not in school now, starting or returning next term",
   },
-  { value: "hs_junior_or_younger", label: "High school junior or younger" },
+  { value: "hs_sophomore_or_younger", label: "High school sophomore or younger" },
   { value: "not_enrolling", label: "Not enrolling in school next term" },
 ] as const;
 
-export const ELIGIBLE_SCHOOL_LEVELS = ["hs_senior", "undergrad", "returning"] as const;
+export const ELIGIBLE_SCHOOL_LEVELS = ["hs_junior", "hs_senior", "undergrad", "returning"] as const;
 export const ELIGIBLE_OUTSIDE_US = false;
 
 export const STATES = [
