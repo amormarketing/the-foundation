@@ -2,6 +2,7 @@
 export const AIRTABLE_TABLES = {
   messages: "tbliOElq1nNf7MLap",
   sponsors: "tblLr2q7cb1ZfaQjN",
+  donations: "tblnLMRCPy4Re2alv",
 } as const;
 
 type FieldValue = boolean | number | string;
@@ -9,6 +10,8 @@ type FieldValue = boolean | number | string;
 export async function createAirtableRecord(
   tableId: string,
   fields: Record<string, FieldValue | undefined>,
+  // Field names to match on, so a retried write updates the same row.
+  upsertOn?: string[],
 ) {
   const token = process.env.AIRTABLE_TOKEN;
   const baseId = process.env.AIRTABLE_BASE_ID;
@@ -24,12 +27,16 @@ export async function createAirtableRecord(
 
   try {
     const response = await fetch(`https://api.airtable.com/v0/${baseId}/${tableId}`, {
-      method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ records: [{ fields: cleanFields }], typecast: true }),
+      method: upsertOn ? "PATCH" : "POST",
+      body: JSON.stringify({
+        records: [{ fields: cleanFields }],
+        typecast: true,
+        ...(upsertOn ? { performUpsert: { fieldsToMergeOn: upsertOn } } : {}),
+      }),
     });
 
     if (!response.ok) {
