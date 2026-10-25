@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  AWARD, DATES, DRAFT_KEY, DRAFT_TTL_DAYS, DRAFT_VERSION, GRAD_YEARS, MAJORS,
+  AWARD, DRAFT_KEY, DRAFT_TTL_DAYS, DRAFT_VERSION, GRAD_YEARS, MAJORS,
   MAX_ROLES, MONEY_FOR, MONTHS, ROLE_YEARS, SCHOOL_LEVELS, SHORT_ANSWER_MAX,
   START_TERMS, STATES,
 } from "../config";
@@ -64,10 +64,6 @@ const normalizeStoredRole = ({ start: legacyStart, end: legacyEnd, ...stored }: 
 };
 const roleLabel = (role: RoleDraft) =>
   role.title && role.where ? role.title + " — " + role.where : role.title || role.where || "Untitled role";
-const formatDate = (value: string) =>
-  new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" }).format(
-    new Date(value + "T00:00:00Z"),
-  );
 
 function RequiredMark() {
   return <span className={styles.requiredMark} aria-hidden="true">*</span>;
@@ -229,17 +225,17 @@ export default function ApplyWizard() {
   if (view === "confirmation") {
     return <main className={styles.main}><section className={styles.wizard}>
       <h1 className={styles.heading} ref={headingRef} tabIndex={-1}>Application received.</h1>
-      <p className={styles.copy}>Your reference number is <span className={styles.referenceId}>{referenceId}</span>. Save it — you&apos;ll need it if you contact us. We&apos;ll email you at {draft.email} with a decision by {formatDate(DATES.decision)}. If you&apos;re a finalist, we&apos;ll ask for a transcript and contact your reference.</p>
+      <p className={styles.copy}>Your reference number is <span className={styles.referenceId}>{referenceId}</span>. Save it — you&apos;ll need it if you contact us. Submitted applications are evaluated every quarter of the year, and we&apos;ll email you at {draft.email} once yours has been reviewed. If you&apos;re a finalist, we&apos;ll ask for a transcript and contact your reference.</p>
       <Link className={styles.quietLink} href="/">Return home</Link>
     </section></main>;
   }
   if (view === "intro") {
     return <main className={styles.main}><section className={styles.wizard}>
-      <h1 className={styles.heading}>Leadership Scholarship.</h1>
+      <h1 className={styles.heading}>Leadership Excellence Scholarship.</h1>
       <p className={styles.copy}>For students who&apos;ve already led people — with or without a title — and are heading toward a career doing it on purpose.</p>
-      <p className={styles.awardLine}>{AWARD.count === 4 ? "Four" : AWARD.count} awards of {"$"}{AWARD.amount.toLocaleString()}, paid directly to your school for the {AWARD.term} term.</p>
+      <p className={styles.awardLine}>Awards of {"$"}{AWARD.minimum.toLocaleString()} or more, based on your leadership impact and available funds, paid directly to your school.</p>
       <p className={styles.copy}>What you&apos;ll need: About 10 minutes. Details on one to three times you led something. One person who can confirm it. There&apos;s no essay.</p>
-      <p className={styles.smallCopy}>Applications close {formatDate(DATES.closes)}. We contact references. Applications are reviewed by a selection committee. The Foundation US does not discriminate on the basis of race, color, national origin, sex, disability, or religion in its scholarship programs.</p>
+      <p className={styles.smallCopy}>Submitted applications are evaluated by a selection committee every quarter of the year. We contact references. The Foundation US does not discriminate on the basis of race, color, national origin, sex, disability, or religion in its scholarship programs.</p>
       <div className={styles.introActions}>
         <button className={styles.buttonApply} type="button" onClick={() => setView("wizard")}>Start application</button>
         {hasSavedDraft && <button className={styles.quietLink} type="button" onClick={() => resetDraft("wizard")}>Clear and start over</button>}
