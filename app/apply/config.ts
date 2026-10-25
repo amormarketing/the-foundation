@@ -1,7 +1,7 @@
 export const SCHOOL_LEVELS = [
   { value: "hs_junior", label: "High school junior" },
   { value: "hs_senior", label: "High school senior" },
-  { value: "undergrad", label: "Currently in college" },
+  { value: "undergrad", label: "Currently in college, trade school, or a vocational program" },
   {
     value: "returning",
     label: "Not in school now, starting or returning next term",

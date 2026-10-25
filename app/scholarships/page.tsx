@@ -59,7 +59,7 @@ const awardFacts = [
 const eligibility = [
   "Be between 14 and 24 years old when you apply.",
   "Be a US citizen, permanent resident, or otherwise legally eligible to attend school in the United States.",
-  "Be a high school junior or senior, or a current or incoming undergraduate student.",
+  "Be a high school junior or senior, or a current or incoming student at a college, university, trade school, or vocational program.",
   "Show a consistent record of leadership in extracurricular activities, community service, or other initiatives.",
   "Hold a minimum GPA of 2.0 on a 4.0 scale.",
 ];

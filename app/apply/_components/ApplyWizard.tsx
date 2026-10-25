@@ -218,7 +218,7 @@ export default function ApplyWizard() {
   if (view === "ineligible") {
     return <main className={styles.main}><section className={styles.wizard}>
       <h1 className={styles.heading} ref={headingRef} tabIndex={-1}>Leadership Scholarship.</h1>
-      <p className={styles.copy}>This scholarship is for high school juniors and seniors and current or returning college students in the US. If that&apos;s you next year, we&apos;d like to hear from you then.</p>
+      <p className={styles.copy}>This scholarship is for high school juniors and seniors and current or returning college, trade school, and vocational students in the US. If that&apos;s you next year, we&apos;d like to hear from you then.</p>
       <Link className={styles.quietLink} href="/">Return home</Link>
     </section></main>;
   }

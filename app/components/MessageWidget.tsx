@@ -77,7 +77,7 @@ export default function MessageWidget() {
           ) : (
             <form className="contact-form message-widget__form" onSubmit={handleSubmit}>
               <p className="message-widget__lead">
-                Questions about our scholarships or programs? Send us a note and
+                Have any questions about our scholarships or programs? Send us a note and
                 we&apos;ll get back to you within 48 hours.
               </p>
               <label>
@@ -95,7 +95,7 @@ export default function MessageWidget() {
               <input className="form-honeypot" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
               {status === "error" ? (
                 <p className="form-error" role="alert">
-                  Something went wrong. Please try again, or email info@thefoundationus.org.
+                  Something went wrong. Please try again, or email us at info@thefoundationus.org.
                 </p>
               ) : null}
               <button className="button button--dark form-submit" type="submit" disabled={status === "sending"}>
