@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import SponsorForm from "./SponsorForm";
 import styles from "./scholarships.module.css";
 
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ const objectives = [
   {
     title: "Create a leadership pipeline",
     description:
-      "Cultivate a network of scholars who will become future professionals, civic leaders, and Foundation ambassadors.",
+      "Build a network of scholars who will become future professionals, civic leaders, and Foundation ambassadors.",
   },
 ];
 
@@ -165,8 +166,8 @@ export default function ScholarshipsPage() {
             <Link className="button button--dark" href="#leadership-excellence">
               View scholarships <ArrowIcon />
             </Link>
-            <Link className={`text-link ${styles.inlineLink}`} href="#create">
-              Create a scholarship <ArrowIcon />
+            <Link className={`text-link ${styles.inlineLink}`} href="#build">
+              Build your own scholarship <ArrowIcon />
             </Link>
           </div>
         </div>
@@ -318,17 +319,17 @@ export default function ScholarshipsPage() {
 
       <section
         className={`light-section ${styles.section}`}
-        id="create"
-        aria-labelledby="create-title"
+        id="build"
+        aria-labelledby="build-title"
       >
         <div className={`${styles.inner} ${styles.split}`}>
           <div>
             <div className="section-number">05 / Partner with us</div>
-            <h2 className={styles.sectionTitle} id="create-title">
-              Create your own scholarship
+            <h2 className={styles.sectionTitle} id="build-title">
+              Build your own scholarship
             </h2>
             <p className={styles.sectionLead}>
-              Creating your own scholarship with The Foundation is a meaningful
+              Building your own scholarship with The Foundation is a meaningful
               way to leave a legacy and make a lasting impact on future
               generations.
             </p>
@@ -340,12 +341,9 @@ export default function ScholarshipsPage() {
               single scholarship and expand over time.
             </p>
             <div className={styles.actions}>
-              <a
-                className="button button--dark"
-                href="mailto:info@thefoundationus.org?subject=Create%20a%20scholarship"
-              >
+              <Link className="button button--dark" href="#build-form">
                 Start a conversation <ArrowIcon />
-              </a>
+              </Link>
               <Link className={`text-link ${styles.inlineLink}`} href="/donate">
                 Or make a donation <ArrowIcon />
               </Link>
@@ -368,6 +366,9 @@ export default function ScholarshipsPage() {
               approval as every Foundation scholarship.
             </p>
           </div>
+        </div>
+        <div className={styles.inner} id="build-form">
+          <SponsorForm />
         </div>
       </section>
     </main>

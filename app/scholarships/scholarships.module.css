@@ -388,3 +388,35 @@
     align-self: stretch;
   }
 }
+
+.sponsorPanel {
+  border: 1px solid var(--line);
+  margin-top: clamp(64px, 7vw, 110px);
+  padding: clamp(28px, 4vw, 52px);
+  scroll-margin-top: 110px;
+}
+
+.sponsorPanel h3 {
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  letter-spacing: -0.04em;
+  margin-bottom: 0;
+}
+
+.sponsorPanel .body {
+  margin-top: 12px;
+}
+
+.sponsorPanel :global(.form-submit) {
+  align-self: start;
+  padding: 0 36px;
+}
+
+@media (max-width: 640px) {
+  .sponsorPanel {
+    padding: 26px 22px;
+  }
+
+  .sponsorPanel :global(.form-submit) {
+    align-self: stretch;
+  }
+}

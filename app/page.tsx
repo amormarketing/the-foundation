@@ -1,4 +1,5 @@
 import ParallaxHeroImage from "@/app/components/ParallaxHeroImage";
+import ContactForm from "@/app/components/ContactForm";
 // import Header from "@/components/Header";
 // import Footer from "@/app/components/Footer";
 
@@ -191,63 +192,7 @@ export default function Home() {
             </a>
           </div>
 
-          <form
-            className="contact-form"
-            action="mailto:info@thefoundationus.org"
-            encType="text/plain"
-            method="post"
-          >
-            <div className="form-row">
-              <label>
-                <span className="full-label">
-                  First name <span aria-hidden="true">*</span>
-                </span>
-
-                <input
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  type="text"
-                />
-              </label>
-              <label>
-                <span className="full-label">
-                  Last name <span aria-hidden="true">*</span>
-                  </span>
-                <input
-                  autoComplete="family-name"
-                  name="lastName"
-                  required
-                  type="text"
-                />
-              </label>
-            </div>
-
-            <label>
-              <span className="full-label">
-              Email <span aria-hidden="true">*</span>
-                </span>
-
-              <input
-                autoComplete="email"
-                name="email"
-                // placeholder="Enter your email"
-                required
-                type="email"
-              />
-            </label>
-            <label>
-              Phone
-              <input autoComplete="tel" name="phone" type="tel" />
-            </label>
-            <label>
-              Message
-              <textarea name="message" rows={4} />
-            </label>
-            <button className="button button--dark form-submit" type="submit">
-              Send message <ArrowIcon />
-            </button>
-          </form>
+          <ContactForm />
         </section>
       </main>
     </>

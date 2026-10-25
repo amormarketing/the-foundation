@@ -26,8 +26,8 @@ export default function DonatePage() {
               Help give the next generation the knowledge, confidence, and
               opportunity to build a stronger future.
             </p>
-            <Link className="text-link" href="/scholarships#create">
-              Create a named scholarship <ArrowIcon />
+            <Link className="text-link" href="/scholarships#build">
+              Build your own scholarship <ArrowIcon />
             </Link>
           </div>
 

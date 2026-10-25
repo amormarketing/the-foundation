@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+import MessageWidget from "@/app/components/MessageWidget";
 
 const sans = localFont({
   src: "../public/fonts/Neue.100.otf",
@@ -42,6 +43,7 @@ export default function RootLayout({
       <Header />
       {children}
       <Footer />
+      <MessageWidget />
       </body>
     </html>
   );
