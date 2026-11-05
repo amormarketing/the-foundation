@@ -2,12 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SponsorForm from "./SponsorForm";
 import styles from "./scholarships.module.css";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/scholarships",
   title: "Scholarships | The Foundation",
+  shareTitle: "$1,000+ Leadership Excellence Scholarship | The Foundation",
   description:
-    "The Foundation Scholarship Program removes financial barriers to education and gives scholars mentorship, leadership training, and real opportunities for impact.",
-};
+    "Made an impact at school, in your community, or on your own? High school juniors and seniors and college, trade, and vocational students can apply.",
+});
 
 const objectives = [
   {

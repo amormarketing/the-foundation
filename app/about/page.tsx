@@ -1,6 +1,16 @@
 import styles from "./about.module.css";
 import Image from "next/image";
 import aboutHero from "@/public/Ross-portrait.avif";
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  path: "/about",
+  title: "About | The Foundation",
+  shareTitle: "About The Foundation: Our Founder and Board",
+  description:
+    "A Los Angeles-based 501(c)(3) providing education, leadership opportunities, and financial access support to young people across the United States.",
+});
 
 const boardMembers = [
     {

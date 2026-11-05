@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import MessageWidget from "@/app/components/MessageWidget";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 const sans = localFont({
   src: "../public/fonts/Neue.100.otf",
@@ -25,9 +26,14 @@ const serif = localFont({
   display: "swap",
 });
 export const metadata: Metadata = {
-  title: "The Foundation | Educating our future.",
-  description:
-    "Supporting the education of the next generation through knowledge, advocacy, leadership, and action.",
+  metadataBase: new URL(SITE_URL),
+  ...pageMetadata({
+    path: "/",
+    title: "The Foundation | Educating our future.",
+    shareTitle: "$1,000+ Scholarship for Students Who Lead | The Foundation",
+    description:
+      "For U.S. high school juniors and seniors and college, trade, and vocational students. Reviewed every quarter. A 501(c)(3) nonprofit.",
+  }),
 };
 
 

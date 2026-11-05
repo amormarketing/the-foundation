@@ -3,6 +3,17 @@ import Link from "next/link";
 import donateHero from "@/public/donate-hero.webp";
 import DonationForm from "./DonationForm";
 import styles from "./donate.module.css";
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
+  path: "/donate",
+  card: "donate",
+  title: "Donate | The Foundation",
+  shareTitle: "Invest in Students Who Lead | Donate to The Foundation",
+  description:
+    "Gifts support the $1,000+ Leadership Excellence Scholarship for U.S. students. Give once or monthly. 501(c)(3) nonprofit, EIN 42-3732209.",
+});
 
 function ArrowIcon() {
   return (

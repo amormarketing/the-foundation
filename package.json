@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "share-cards": "node scripts/share-cards/render.mjs"
   },
   "overrides": {
     "postcss": "^8.5.18",
