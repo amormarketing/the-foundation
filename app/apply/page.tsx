@@ -7,7 +7,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Apply | The Foundation",
   shareTitle: "Apply for the $1,000+ Scholarship | The Foundation",
   description:
-    "Tell us about up to three times you led something and name one person who can confirm it. About 10 minutes online.",
+    "Free to apply, about 10 minutes online. Tell us about up to three times you led something and name one person who can confirm it.",
 });
 
 export default function ApplyPage() {

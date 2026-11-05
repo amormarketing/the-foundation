@@ -30,14 +30,16 @@ const root = join(here, "../..");
 // - Concrete program facts only ($1,000+, who's eligible). No invented stats.
 // - Asset framing ("students who lead"), never "students in need".
 // - Application wording, never prize wording ("win", "selected", "claim").
-// - One scholarship exists, so singular. Add "Free to apply" only once confirmed.
+// - One scholarship exists, so singular.
+// - "Free to apply" leads: the strongest answer to a parent's scam check
+//   (confirmed by the founders 2026-11-05: no application fee).
 const CARDS = [
   {
     // Used by /, /scholarships, /apply, /about and any page without its own card.
     name: "default",
     eyebrow: "Leadership Excellence Scholarship",
     headline: ["A $1,000+ scholarship", "for students who lead."],
-    subline: "High school, college, trade & vocational students",
+    subline: "Free to apply · High school, college, trade & vocational",
     footer: ["thefoundationus.org", "501(c)(3) nonprofit"],
   },
   {

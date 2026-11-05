@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "The Foundation | Educating our future.",
     shareTitle: "$1,000+ Scholarship for Students Who Lead | The Foundation",
     description:
-      "For U.S. high school juniors and seniors and college, trade, and vocational students. Reviewed every quarter. A 501(c)(3) nonprofit.",
+      "Free to apply. For U.S. high school juniors and seniors and college, trade, and vocational students. Reviewed every quarter. A 501(c)(3) nonprofit.",
   }),
 };
 

@@ -13,11 +13,11 @@ export const SITE_NAME = "The Foundation";
 
 // Bump SHARE_VERSION whenever a card image changes so platforms that cache
 // previews (Facebook, LinkedIn, iMessage) fetch the new one.
-const SHARE_VERSION = "2026-11-05";
+const SHARE_VERSION = "2026-11-05b";
 
 const SHARE_CARDS = {
   default:
-    "The Foundation: a $1,000+ scholarship for students who lead. High school, college, trade and vocational students. 501(c)(3) nonprofit.",
+    "The Foundation: a $1,000+ scholarship for students who lead. Free to apply. High school, college, trade and vocational students. 501(c)(3) nonprofit.",
   donate:
     "Donate to The Foundation: invest in students who lead. Gifts support the $1,000+ Leadership Excellence Scholarship. 501(c)(3) nonprofit, EIN 42-3732209.",
 } as const;

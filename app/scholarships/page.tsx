@@ -9,7 +9,7 @@ export const metadata: Metadata = pageMetadata({
   title: "Scholarships | The Foundation",
   shareTitle: "$1,000+ Leadership Excellence Scholarship | The Foundation",
   description:
-    "Made an impact at school, in your community, or on your own? High school juniors and seniors and college, trade, and vocational students can apply.",
+    "Made an impact at school or in your community? It's free to apply. Open to high school juniors and seniors and college, trade, and vocational students.",
 });
 
 const objectives = [
