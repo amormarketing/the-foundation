@@ -47,6 +47,11 @@ const awardFacts = [
     detail: "Based on your leadership impact and available funds.",
   },
   {
+    label: "Cost to apply",
+    value: "Free",
+    detail: "There is no application fee. Applying online takes about 10 minutes.",
+  },
+  {
     label: "Review",
     value: "Every quarter",
     detail: "Submitted applications are evaluated every quarter of the year.",
@@ -243,7 +248,7 @@ export default function ScholarshipsPage() {
             <div>
               <h3>How to apply</h3>
               <p>
-                Apply online in about 10 minutes. You&apos;ll tell us about up
+                Apply online for free in about 10 minutes. You&apos;ll tell us about up
                 to three times you led something and name one person who can
                 confirm it. Finalists may be asked for an academic transcript,
                 a résumé or activity sheet, letters of recommendation, and a
